@@ -3,183 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selección de Entradas</title>
+    <title>Selección de Entradas - Cine Elorrieta</title>
+    <!-- Usamos tu hoja de estilos -->
+    <link rel="stylesheet" href="css/estilos.css">
+    
     <style>
-        /* ESTILOS (CSS) - Para que se vea ordenado */
-        body { font-family: sans-serif; padding: 20px; background-color: #f4f4f4; }
-        h1 { color: #333; }
-        
-        /* Contenedores de las secciones */
-        .seccion { margin-bottom: 20px; padding: 15px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        
-        /* Botones de selección */
-        .boton-opcion {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin: 5px;
+        /* Un par de estilos extra para el desplegable de entradas */
+        select {
+            padding: 10px;
+            font-size: 16px;
             border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
+            width: 100px;
+            margin-right: 10px;
         }
-        .boton-opcion:hover { background-color: #0056b3; }
-        
-        /* Ocultar secciones hasta que toque */
-        .oculto { display: none; }
+        .info-seleccion {
+            background-color: #e50914; /* Rojo fondo */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
 
-    <h1>🎬 Compra de Entradas</h1>
-    <p>Bienvenido, <span id="nombreUsuario" style="font-weight: bold;">Usuario</span></p>
+    <h1>🎬 Cine Elorrieta</h1>
+    <p>Bienvenido, <span id="nombreUsuario" style="font-weight: bold;">Usuario Invitado</span></p>
 
-    <!-- PASO 1: ELEGIR CINE -->
-    <div id="div-cines" class="seccion">
-        <h3>1. Elige tu Cine:</h3>
-        <div id="contenedor-botones-cines">
-            <!-- Aquí JavaScript "inyectará" los botones de los cines -->
+    <!-- PASO 1: ELEGIR PELÍCULA (Ahora es el primero) -->
+    <div id="div-peliculas" class="seccion">
+        <h3>1. Cartelera: ¿Qué quieres ver hoy?</h3>
+        <div id="contenedor-botones-peliculas" class="grid-peliculas">
+            <!-- JS inyectará aquí las pelis de Cine Elorrieta -->
         </div>
     </div>
 
-    <!-- PASO 2: ELEGIR PELÍCULA (Oculto al principio) -->
-    <div id="div-peliculas" class="seccion oculto">
-        <h3>2. Elige la Película:</h3>
-        <div id="contenedor-botones-peliculas"></div>
-    </div>
-
-    <!-- PASO 3: ELEGIR SESIÓN (Oculto al principio) -->
+    <!-- PASO 2: ELEGIR SESIÓN (Oculto al principio) -->
     <div id="div-sesiones" class="seccion oculto">
-        <h3>3. Elige la Hora:</h3>
+        <h3>2. Elige la sesión para <span id="titulo-peli-seleccionada" style="color: #e50914;"></span>:</h3>
         <div id="contenedor-botones-sesiones"></div>
     </div>
 
+    <!-- PASO 3: CANTIDAD DE ENTRADAS (Oculto al principio) -->
+    <div id="div-cantidad" class="seccion oculto">
+        <h3>3. ¿Cuántas entradas quieres?</h3>
+        
+        <div style="display: flex; align-items: center; justify-content: center; gap: 15px;">
+            <label for="num-entradas">Número de personas:</label>
+            <!-- Desplegable del 1 al 10 -->
+            <select id="num-entradas">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <br>
+        <p>Sesión elegida: <span id="resumen-hora" class="info-seleccion"></span></p>
+        
+        <button class="boton-confirmar" onclick="irAlResumen()">CONTINUAR A PAGAR ➡</button>
+    </div>
+
     <script>
-        // --- 1. DATOS SIMULADOS (Nuestra "Base de Datos") ---
-        const cinesBD = [
-            {
-                nombre: "Cine Elorrieta",
-                peliculas: [
-                    { titulo: "Avatar 2", sesiones: ["16:00", "18:00", "21:00"], precio: 9.50 },
-                    { titulo: "Super Mario", sesiones: ["17:00", "19:00"], precio: 8.00 }
-                ]
-            },
-            {
-                nombre: "Cine Zubiarte",
-                peliculas: [
-                    { titulo: "Oppenheimer", sesiones: ["18:30", "22:00"], precio: 10.00 },
-                    { titulo: "Barbie", sesiones: ["16:30", "19:30"], precio: 10.00 }
-                ]
-            }
-        ];
-
-        // --- 2. VARIABLES GLOBALES (Para guardar lo que el usuario va eligiendo) ---
-        let cineSeleccionado = null;
-        let peliculaSeleccionada = null;
-
-        // --- 3. AL CARGAR LA PÁGINA ---
-        window.onload = function() {
-            // Recuperar el nombre del usuario del Login anterior
-            const usuario = localStorage.getItem("usuarioLogueado");
-            
-            if (usuario) {
-                document.getElementById("nombreUsuario").innerText = usuario;
-            } else {
-                // MODIFICADO: En vez de redirigir (que da error en previsualización), 
-                // ponemos un usuario de prueba para que puedas ver la página.
-                // En tu proyecto real, descomenta la línea de window.location.href
-                console.log("No hay usuario logueado. Usando usuario de prueba.");
-                document.getElementById("nombreUsuario").innerText = "Usuario de Prueba";
-                
-                 window.location.href = "index.html"; 
-            }
-
-            cargarCines(); // Arrancar la primera ficha del dominó
+        // --- 1. DATOS (Solo Cine Elorrieta) ---
+        // Al ser solo un cine, simplificamos el acceso a los datos
+        const cineElorrieta = {
+            nombre: "Cine Elorrieta",
+            peliculas: [
+                { 
+                    titulo: "Hulk", 
+                    sesiones: ["16:00", "18:00", "20:00"], 
+                    precio: 7.50,
+                    imagen: "https://m.media-amazon.com/images/M/MV5BMTUyNzk3MjA1OF5BMl5BanBnXkFtZTcwMTE1Njg2MQ@@._V1_.jpg" 
+                },
+                { 
+                    titulo: "Barbie", 
+                    sesiones: ["17:00", "19:00"], 
+                    precio: 8.00,
+                    imagen: "https://m.media-amazon.com/images/M/MV5BOWIwZgy0wFODItNjQ5Ni00NzY2LWJiY2MtNDFkZjg4ODQ0ZDA1XkEyXkFqcGdeQXVyMTEyMjM2NDc2._V1_.jpg" 
+                },
+                { 
+                    titulo: "Oppenheimer", 
+                    sesiones: ["18:30", "21:00"], 
+                    precio: 9.00,
+                    imagen: "https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyMTAzMDM4MjM0._V1_.jpg" 
+                }
+            ]
         };
 
-        // --- 4. FUNCIONES DE LÓGICA ---
+        // Variables globales para guardar la selección
+        let peliculaElegida = null;
+        let horaElegida = null;
 
-        // PASO A: Dibujar los botones de los Cines
-        function cargarCines() {
-            const contenedor = document.getElementById("contenedor-botones-cines");
-            
-            // Recorremos el array de cinesBD
-            cinesBD.forEach((cine, index) => {
-                // Creamos un botón por cada cine
-                const boton = document.createElement("button");
-                boton.innerText = cine.nombre;
-                boton.className = "boton-opcion";
-                
-                // Le damos la orden de qué hacer al hacer click
-                boton.onclick = function() {
-                    seleccionarCine(index); // Pasamos el índice (0 o 1) para saber cuál es
-                };
+        // --- 2. AL CARGAR LA PÁGINA ---
+        window.onload = function() {
+            // Recuperar usuario
+            const usuario = localStorage.getItem("usuarioLogueado");
+            if (usuario) {
+                document.getElementById("nombreUsuario").innerText = usuario;
+            }
 
-                contenedor.appendChild(boton); // Añadir el botón al HTML
-            });
-        }
+            // CARGAR PELÍCULAS DIRECTAMENTE
+            cargarPeliculas();
+        };
 
-        // PASO B: Usuario eligió Cine -> Mostrar Películas
-        function seleccionarCine(indexCine) {
-            // Guardamos el objeto cine entero en la variable global
-            cineSeleccionado = cinesBD[indexCine];
-            
-            // Mostramos la siguiente sección (quitamos la clase 'oculto')
-            document.getElementById("div-peliculas").classList.remove("oculto");
-            // Ocultamos sesiones por si acaso cambió de opinión
-            document.getElementById("div-sesiones").classList.add("oculto");
+        // --- 3. FUNCIONES ---
 
-            // Limpiamos películas anteriores y dibujamos las nuevas
+        function cargarPeliculas() {
             const contenedor = document.getElementById("contenedor-botones-peliculas");
-            contenedor.innerHTML = ""; // Borrar botones viejos
+            
+            cineElorrieta.peliculas.forEach((peli, index) => {
+                // Creamos la tarjeta (igual que antes pero con diseño mejorado)
+                const tarjeta = document.createElement("div");
+                tarjeta.className = "tarjeta-peli";
+                // Añadimos estilo inline para que se vea bien como tarjeta
+                tarjeta.style.border = "1px solid #ccc";
+                tarjeta.style.padding = "10px";
+                tarjeta.style.margin = "10px";
+                tarjeta.style.display = "inline-block";
+                tarjeta.style.width = "150px";
+                tarjeta.style.cursor = "pointer";
+                tarjeta.style.backgroundColor = "white";
+                tarjeta.style.color = "black";
+                tarjeta.style.borderRadius = "8px";
 
-            cineSeleccionado.peliculas.forEach((peli, index) => {
-                const boton = document.createElement("button");
-                boton.innerText = peli.titulo; // + " (" + peli.precio + "€)";
-                boton.className = "boton-opcion";
-                boton.onclick = function() {
+                tarjeta.innerHTML = `
+                    <img src="${peli.imagen}" style="width:100%; height:200px; object-fit:cover; border-radius:5px;">
+                    <h4>${peli.titulo}</h4>
+                    <p>${peli.precio}€</p>
+                `;
+
+                tarjeta.onclick = function() {
                     seleccionarPelicula(index);
                 };
-                contenedor.appendChild(boton);
+
+                contenedor.appendChild(tarjeta);
             });
         }
 
-        // PASO C: Usuario eligió Película -> Mostrar Sesiones
-        function seleccionarPelicula(indexPeli) {
-            peliculaSeleccionada = cineSeleccionado.peliculas[indexPeli];
-
-            document.getElementById("div-sesiones").classList.remove("oculto");
+        function seleccionarPelicula(index) {
+            peliculaElegida = cineElorrieta.peliculas[index];
             
-            const contenedor = document.getElementById("contenedor-botones-sesiones");
-            contenedor.innerHTML = ""; 
+            // Actualizar interfaz
+            document.getElementById("titulo-peli-seleccionada").innerText = peliculaElegida.titulo;
+            document.getElementById("div-sesiones").classList.remove("oculto");
+            document.getElementById("div-cantidad").classList.add("oculto"); // Ocultar paso 3 por si cambia de peli
 
-            peliculaSeleccionada.sesiones.forEach((hora) => {
+            // Generar botones de hora
+            const contenedor = document.getElementById("contenedor-botones-sesiones");
+            contenedor.innerHTML = ""; // Limpiar anteriores
+
+            peliculaElegida.sesiones.forEach(hora => {
                 const boton = document.createElement("button");
                 boton.innerText = hora;
                 boton.className = "boton-opcion";
-                boton.style.backgroundColor = "#28a745"; // Color verde para comprar
-                
                 boton.onclick = function() {
-                    comprarEntrada(hora);
+                    seleccionarSesion(hora);
                 };
                 contenedor.appendChild(boton);
             });
+            
+            // Scroll suave hacia abajo
+            document.getElementById("div-sesiones").scrollIntoView({behavior: "smooth"});
         }
 
-        // PASO FINAL: Guardar y terminar
-        function comprarEntrada(hora) {
-            // Guardamos TODOS los datos elegidos en la memoria del navegador
-            localStorage.setItem("cine", cineSeleccionado.nombre);
-            localStorage.setItem("pelicula", peliculaSeleccionada.titulo);
-            localStorage.setItem("precio", peliculaSeleccionada.precio);
-            localStorage.setItem("hora", hora);
+        function seleccionarSesion(hora) {
+            horaElegida = hora;
+            
+            // Mostrar paso 3
+            document.getElementById("div-cantidad").classList.remove("oculto");
+            document.getElementById("resumen-hora").innerText = hora;
+            
+            // Scroll suave hacia abajo
+            document.getElementById("div-cantidad").scrollIntoView({behavior: "smooth"});
+        }
 
-            alert("✅ ¡Éxito! Has seleccionado: " + peliculaSeleccionada.titulo + " a las " + hora + ".\n\n(En tu proyecto real, aquí se redirigirá a 'resumen.html')");
-            
-            // MODIFICADO: Comentado para evitar el error en la previsualización
-            // En tu Visual Studio Code, quita las barras // de abajo:
-            
-             window.location.href = "resumen.html"; 
+        function irAlResumen() {
+            // Capturar la cantidad del desplegable
+            const cantidad = document.getElementById("num-entradas").value;
+
+            // Guardar en la mochila
+            localStorage.setItem("cine", "Cine Elorrieta"); // Fijo
+            localStorage.setItem("pelicula", peliculaElegida.titulo);
+            localStorage.setItem("precio", peliculaElegida.precio);
+            localStorage.setItem("hora", horaElegida);
+            localStorage.setItem("cantidad", cantidad); // NUEVO DATO
+
+            // Ir al ticket
+            window.location.href = "resumen.html";
         }
 
     </script>
