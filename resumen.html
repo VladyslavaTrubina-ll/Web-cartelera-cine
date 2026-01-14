@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen de Compra</title>
+    <style>
+        body { font-family: sans-serif; background-color: #333; display: flex; justify-content: center; align-items: center; height: 100vh; color: white; }
+        
+        /* Estilo tipo "Ticket de Cine" */
+        .ticket {
+            background-color: #fff;
+            color: #333;
+            width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            text-align: center;
+            border-top: 10px solid #e50914; /* Rojo cine */
+        }
+        
+        h2 { margin-top: 0; }
+        
+        .dato-fila {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #ccc;
+            padding: 10px 0;
+        }
+        
+        .boton-confirmar {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        
+        .boton-cancelar {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Mensaje final oculto */
+        #mensaje-exito {
+            display: none;
+            background: white;
+            color: green;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. EL TICKET (Se ve al principio) -->
+    <div id="ticket-visual" class="ticket">
+        <h2>🍿 Tu Entrada</h2>
+        <p>Revisa los datos antes de pagar</p>
+
+        <div class="dato-fila">
+            <strong>Cine:</strong>
+            <span id="txt-cine">Cargando...</span>
+        </div>
+        <div class="dato-fila">
+            <strong>Película:</strong>
+            <span id="txt-peli">Cargando...</span>
+        </div>
+        <div class="dato-fila">
+            <strong>Hora:</strong>
+            <span id="txt-hora">Cargando...</span>
+        </div>
+        <div class="dato-fila">
+            <strong>Precio:</strong>
+            <span id="txt-precio">0.00</span>€
+        </div>
+
+        <button class="boton-confirmar" onclick="finalizarCompra()">✅ Confirmar y Pagar</button>
+        <button class="boton-cancelar" onclick="volverAtras()">❌ Cancelar</button>
+    </div>
+
+    <!-- 2. MENSAJE FINAL (Oculto hasta que compras) -->
+    <div id="mensaje-exito">
+        <h1>¡Compra Realizada! 🎉</h1>
+        <p>Gracias por venir al cine.</p>
+        <p>Tu código de entrada es: <strong id="codigo-random"></strong></p>
+        <button onclick="volverInicio()" style="padding:10px; cursor:pointer;">Volver al Inicio</button>
+    </div>
+
+    <script>
+        // --- 1. AL CARGAR: SACAR COSAS DE LA MOCHILA (localStorage) ---
+        window.onload = function() {
+            // Recuperamos los datos que guardamos en seleccion.html
+            const cine = localStorage.getItem("cine");
+            const peli = localStorage.getItem("pelicula");
+            const hora = localStorage.getItem("hora");
+            const precio = localStorage.getItem("precio");
+
+            // Si falta algún dato, es que el usuario se ha saltado pasos
+            if (!cine || !peli) {
+                alert("No has seleccionado ninguna película. Volviendo al inicio.");
+                window.location.href = "seleccion.html";
+            }
+
+            // Poner los textos en el HTML (DOM)
+            document.getElementById("txt-cine").innerText = cine;
+            document.getElementById("txt-peli").innerText = peli;
+            document.getElementById("txt-hora").innerText = hora;
+            document.getElementById("txt-precio").innerText = precio;
+        };
+
+        // --- 2. FUNCIONES DE LOS BOTONES ---
+
+        function finalizarCompra() {
+            // A) Simulamos guardar en Base de Datos (solo console.log)
+            console.log("Enviando a BD: Compra realizada por " + localStorage.getItem("usuarioLogueado"));
+
+            // B) Efecto visual: Ocultar ticket y mostrar éxito
+            document.getElementById("ticket-visual").style.display = "none";
+            document.getElementById("mensaje-exito").style.display = "block";
+            
+            // Generar un número aleatorio de entrada para que parezca real
+            document.getElementById("codigo-random").innerText = "ENT-" + Math.floor(Math.random() * 10000);
+            
+            // C) Limpiar la mochila (opcional, para que no queden datos viejos)
+             localStorage.clear(); // Ojo: esto borra también el usuario, mejor borrar selectivos si quieres
+        }
+
+        function volverAtras() {
+            window.location.href = "seleccion.html";
+        }
+
+        function volverInicio() {
+            localStorage.clear(); // Ahora sí, borramos todo y al login
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>
