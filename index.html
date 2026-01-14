@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cine Elorrieta - Login</title>
+    <style>
+        /* CSS Básico para que no se vea feo */
+        body { font-family: sans-serif; background-color: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .login-container { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 300px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #333; color: white; border: none; cursor: pointer; }
+        button:hover { background: #555; }
+        .error { color: red; display: none; text-align: center;}
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2 style="text-align: center;">Acceso Cine</h2>
+        
+        <!-- FORMULARIO -->
+        <input type="text" id="usuario" placeholder="Usuario (prueba: admin)">
+        <input type="password" id="pass" placeholder="Contraseña (prueba: 1234)">
+        
+        <!-- EL EVENTO: onclick llama a la función de JS -->
+        <button onclick="intentarLogin()">Entrar</button>
+        
+        <p id="mensaje-error" class="error">Usuario o contraseña incorrectos</p>
+    </div>
+
+    <script>
+        // --- 1. DATOS SIMULADOS (Array de Objetos) ---
+        // Esto sustituye a tu base de datos por ahora
+        const usuariosRegistrados = [
+            { nombre: "admin", clave: "1234" },
+            { nombre: "pepe", clave: "0000" }
+        ];
+
+        // --- 2. LÓGICA JS (DOM y Funciones) ---
+        function intentarLogin() {
+            // A) Capturar lo que ha escrito el usuario (DOM)
+            let userInput = document.getElementById("usuario").value;
+            let passInput = document.getElementById("pass").value;
+            let cartelError = document.getElementById("mensaje-error");
+
+            // B) Validar buscando en el Array (Lógica)
+            // "found" será el usuario si lo encuentra, o undefined si no
+            let usuarioEncontrado = usuariosRegistrados.find(function(item) {
+                return item.nombre === userInput && item.clave === passInput;
+            });
+
+            // C) Tomar decisiones
+            if (usuarioEncontrado) {
+                // Si es correcto, guardamos quién es y cambiamos de página
+                // localStorage sirve para no perder datos al cambiar de HTML
+                localStorage.setItem("usuarioLogueado", userInput);
+                
+                alert("¡Login correcto! Redirigiendo a selección de películas...");
+                
+                // Aquí iría la redirección real:
+                 window.location.href = "seleccion.html"; 
+            } else {
+                // Si falla, modificamos el DOM para mostrar error
+                cartelError.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
