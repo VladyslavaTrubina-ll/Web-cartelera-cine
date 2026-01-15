@@ -2,6 +2,7 @@
 const usuariosBD = [
     { user: "admin", pass: "1234" },
     { user: "cliente1", pass: "hola" }
+    
 ];
 
 // Simulamos las películas y sesiones
