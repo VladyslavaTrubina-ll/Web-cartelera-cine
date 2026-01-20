@@ -52,3 +52,9 @@ Reto2-html/
     busco error 
 
     error ha quitado 
+
+
+Quitar error:
+    git config --global commit.gpgsign false
+    git config --global --unset commit.gpgsing 
+    git config --list --show-origin --show-scope
