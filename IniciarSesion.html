@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Document</title>
 
-    <link rel="stylesheet"  href="./Inicio.css">
-   
-      
+    <link rel="stylesheet" href="./Inicio.css">
+
+
 
 </head>
 
@@ -20,7 +21,8 @@
 
     <header>
 
-        <div class="overlay"> <!--sobrecapa semitransparente que permite que el fondo se vea pero que el contenido sea legible-->
+        <div class="overlay">
+            <!--sobrecapa semitransparente que permite que el fondo se vea pero que el contenido sea legible-->
             <div class="recuadro">
                 <img class="logo" src="./img/Logo.png"> <!--CLASS = Apodo para poder aplicarle estilos-->
                 <h1>Cines Elorrieta</h1>
@@ -32,144 +34,157 @@
 
 
     </header>
-    
- <div class="contenedor">
+
+    <div class="contenedor">
         <div class="elemento">
-            <a href= "Inicio.html" >Inicio</a></div>
+            <a href="Inicio.html">Inicio</a>
+        </div>
         <div class="elemento">
-            <a href= "Peliculas.html">Peliculas</a></div>
+            <a href="Peliculas.html">Peliculas</a>
+        </div>
         <div class="elemento">
-            <a href = "IniciarSesion.html">Iniciar Sesión</a></div>
+            <a href="IniciarSesion.html">Iniciar Sesión</a>
+        </div>
         <div class="elemento">
-            <a href = "Registrate.html">Regístrate</a></div>
-    
+            <a href="Registrate.html">Regístrate</a>
+        </div>
+
     </div>
 
 
-<!--Contenido principal: texyo + tabla-->
-<div class= "contenedor-flex">
+    <!--Contenido principal: texyo + tabla-->
+    <div class="contenedor-flex">
 
-    <div class = "texto">
-<p>
-Nuestra máquina expendedora no solo busca reducir el impacto ambiental, sino también promover la inclusión y la accesibilidad para todas las personas.
-Creemos que la tecnología debe estar al servicio de la sociedad y del planeta.
-Por eso, trabajamos para reducir el impacto ecológico en cada etapa, desde el diseño del producto hasta su funcionamiento diario.
-</p>
+        <div class="texto">
+            <p>
+                Nuestra máquina expendedora no solo busca reducir el impacto ambiental, sino también promover la
+                inclusión y la accesibilidad para todas las personas.
+                Creemos que la tecnología debe estar al servicio de la sociedad y del planeta.
+                Por eso, trabajamos para reducir el impacto ecológico en cada etapa, desde el diseño del producto hasta
+                su funcionamiento diario.
+            </p>
 
-</div>
+        </div>
 
- <header class="logo-container">
-        <figure>
-            <img src="img/Logo.png" alt="Logo de Cine Elorrieta" class="logo">
-        </figure>
-    </header>
+        <header class="logo-container">
+            <figure>
+                <img src="img/Logo.png" alt="Logo de Cine Elorrieta" class="logo">
+            </figure>
+        </header>
 
 
-    <div class="card">
-        <h2>Regístrate para entrar<br>a Cines Elorrieta </h2>
-        <form id="formularioAcceso" novalidate>
-            <!--Este atributo booleano indica que el formulario no debe validarse cuando se envía.-->
-            <div class="form-group">
-                <label for="nombreUsuario">Nombre y Apellidos:</label>
-                <input type="text" id="nombreUsuario" placeholder="Ej. Ana García">
+        <div class="card">
+            <h2>Regístrate para entrar<br>a Cines Elorrieta </h2>
+            <form id="formularioAcceso" novalidate>
+                <!--Este atributo booleano indica que el formulario no debe validarse cuando se envía.-->
+                <div class="form-group">
+                    <label for="nombreUsuario">Nombre y Apellidos:</label>
+                    <input type="text" id="nombreUsuario" placeholder="Ej. Ana García">
+                </div>
+
+                <div class="form-group">
+                    <label for="contraseña">Contraseña:</label>
+                    <input type="text" id="contraseña" placeholder="Ej. 1234">
+                </div>
+
+                <button type="submit">Verificar Entrada</button>
+            </form>
+
+            <!-- Aquí mostraremos el resultado manipulando el DOM (U3.11) -->
+            <div id="mensajeResultado"></div>
+        </div>
+
+        <!-- SCRIPTS EN ORDEN CORRECTO -->
+        <script src="js/datos.js"></script>
+        <script src="script.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+        <div class="tabla">
+            <table border=1 class="tabla-sostenibilidad">
+                <tr>
+                    <th>Aspecto</th>
+                    <th>Compromiso</th>
+                </tr>
+
+                <tr>
+                    <td>Materiales sostenibles</td>
+                    <td>Utilizamos componentes reciclables y envases biodegradables para minimizar los residuos.</td>
+                </tr>
+
+                <tr>
+                    <td>Eficiencia energética</td>
+                    <td>El sistema de iluminación LED y el modo de ahorro reducen significativamente el consumo
+                        eléctrico.</td>
+                </tr>
+
+                <tr>
+                    <td>Gestión de residuos</td>
+                    <td>Incorporamos espacios para la separación y reciclaje de envases directamente junto a la máquina.
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Apoyo social</td>
+                    <td>Colaboramos con proveedores locales y programas de empleo inclusivo para personas en situación
+                        de vulnerabilidad.</td>
+                </tr>
+
+                <tr>
+                    <td>Accesibilidad universal</td>
+                    <td>El diseño incluye una pantalla con alto contraste, botones grandes, opciones de lectura por voz
+                        y una altura accesible para personas en silla de ruedas.</td>
+                </tr>
+
+                <tr>
+                    <td>Equidad económica</td>
+                    <td>Ofrecemos precios justos y opciones saludables y accesibles para todo tipo de público.</td>
+                </tr>
+
+            </table>
+
+        </div>
+        <p>Con esta iniciativa, queremos que cada compra sea una acción positiva: por el medio ambiente, por la
+            comunidad y por un futuro más justo para todos.
+
+        </p>
+
+    </div>
+
+
+
+    <!--Pie de página-->
+    <footer>
+
+        <div class="footer">
+
+            <!--Información principal del footer-->
+            <p>© 2025 Elorrieta Vending</p>
+            <p>Comprometidos con la sostenibilidad y la accesibilidad</p>
+
+            <div class="footer-seccion">
+
+                <!--Sección con datos de contacto-->
+                <p><img src="./imagenes/correobl.png" alt="email" class="icono"> contacto@elorrietavending.com </p>
+                <p><img src="./imagenes/telefonobl.png" alt="teléfono" class="icono"> +34 944 123 456</p>
+                <p><img src="./imagenes/instagrambl.png" alt="instagram" class="icono"> @elorrieta_vending</p>
+                <p><img src="./imagenes/ubicacionbl.png" alt="ubicación" class="icono"> Calle Iparraguirre 58, 48010
+                    Bilbao, Bizkaia, España </p>
+
             </div>
 
-            <div class="form-group">
-                <label for="contraseña">Contraseña:</label>
-                <input type="text" id="contraseña" placeholder="Ej. 1234">
-            </div>
+        </div>
 
-            <button type="submit">Verificar Entrada</button>
-        </form>
-
-        <!-- Aquí mostraremos el resultado manipulando el DOM (U3.11) -->
-        <div id="mensajeResultado"></div>
-    </div>
-
-    <!-- SCRIPTS EN ORDEN CORRECTO -->
-    <script src="js/datos.js"></script>
-    <script src="script.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-<div class = "tabla">
- <table border=1 class = "tabla-sostenibilidad">
-<tr>
-    <th>Aspecto</th>
-    <th>Compromiso</th>
-</tr>
-
-<tr>
-    <td>Materiales sostenibles</td>
-    <td>Utilizamos componentes reciclables y envases biodegradables para minimizar los residuos.</td>
-</tr>
-
-<tr>
-    <td>Eficiencia energética</td>
-    <td>El sistema de iluminación LED y el modo de ahorro reducen significativamente el consumo eléctrico.</td>
-</tr>
-
-<tr>
-    <td>Gestión de residuos</td>
-    <td>Incorporamos espacios para la separación y reciclaje de envases directamente junto a la máquina.</td>
-</tr>
-
-<tr>
-    <td>Apoyo social</td>
-    <td>Colaboramos con proveedores locales y programas de empleo inclusivo para personas en situación de vulnerabilidad.</td>
-</tr>
-
-<tr>
-    <td>Accesibilidad universal</td>
-    <td>El diseño incluye una pantalla con alto contraste, botones grandes, opciones de lectura por voz y una altura accesible para personas en silla de ruedas.</td>
-</tr>
-
-<tr>
-    <td>Equidad económica</td>
-    <td>Ofrecemos precios justos y opciones saludables y accesibles para todo tipo de público.</td>
-</tr>
-
- </table>
-
-</div>
- <p>Con esta iniciativa, queremos que cada compra sea una acción positiva: por el medio ambiente, por la comunidad y por un futuro más justo para todos.
-
- </p>
-
- </div>
-    
-
-
-<!--Pie de página-->
-<footer>
-
-<div class = "footer">
-
-    <!--Información principal del footer-->
-    <p>© 2025 Elorrieta Vending</p>
-    <p>Comprometidos con la sostenibilidad y la accesibilidad</p>
-
-    <div class="footer-seccion">
-
-        <!--Sección con datos de contacto-->
-    <p><img src = "./imagenes/correobl.png" alt = "email" class = "icono"> contacto@elorrietavending.com </p>
-    <p><img src = "./imagenes/telefonobl.png" alt = "teléfono" class = "icono"> +34 944 123 456</p>
-    <p><img src = "./imagenes/instagrambl.png" alt = "instagram" class = "icono"> @elorrieta_vending</p>
-    <p><img src = "./imagenes/ubicacionbl.png" alt = "ubicación" class = "icono"> Calle Iparraguirre 58, 48010 Bilbao, Bizkaia, España </p>
-
-    </div>
-
-</div>
-   
-</footer>
+    </footer>
 
 </body>
+
 </html>

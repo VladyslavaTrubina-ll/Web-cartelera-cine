@@ -1,78 +1,105 @@
 /*Fondo general de la página*/
 body {
-    background-color:#ffffff; /*Color de fondo general*/
-    margin: 0;  /*Elimina el margen externo por defecto del body*/
-    padding: 0; /*Elimina el relleno interno por defecto del body*/
+    background-color: #ffffff;
+    /*Color de fondo general*/
+    margin: 0;
+    /*Elimina el margen externo por defecto del body*/
+    padding: 0;
+    /*Elimina el relleno interno por defecto del body*/
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 
 /*--HEADER--*/
 header {
-    height: 400px; /* altura fija del encabezado*/
-    text-align: center; /*Centra el texto dentro del header*/
-    background-image: url('./imagenes/fondo.png'); /*Imagén de fondo*/
-    background-size: cover;       /* La imagen cubre todo el header */
-    background-position: center;  /* Centrada vertical y horizontalmente*/
-    background-repeat: no-repeat; /*Evita que la imagen se repita*/
-    color: rgb(170, 153, 3);               /* Texto visible */
-    position: relative;           /* Posición necesaria si quieres overlay, permite posicionar elementos hijos de forma relativa */
+    height: 400px;
+    /* altura fija del encabezado*/
+    text-align: center;
+    /*Centra el texto dentro del header*/
+    background-image: url('./imagenes/fondo.png');
+    /*Imagén de fondo*/
+    background-size: cover;
+    /* La imagen cubre todo el header */
+    background-position: center;
+    /* Centrada vertical y horizontalmente*/
+    background-repeat: no-repeat;
+    /*Evita que la imagen se repita*/
+    color: rgb(170, 153, 3);
+    /* Texto visible */
+    position: relative;
+    /* Posición necesaria si quieres overlay, permite posicionar elementos hijos de forma relativa */
 }
 
 /* Overlay que cubre todo el header */
 header .overlay {
-    background-color: rgba(255, 255, 255, 0.3); /* blanco translúcido */
-    height: 100%;         
-    width: 100%; 
-    display: flex;         /* usa flexbox para centrar el contenido*/
-    flex-direction: column; /*Coloca los elementos uno debajo del otro*/
-    justify-content: center; /*Centra el contenido verticalmente*/
-    align-items: center; /*Centra el contenido horizontalmente*/
+    background-color: rgba(255, 255, 255, 0.3);
+    /* blanco translúcido */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    /* usa flexbox para centrar el contenido*/
+    flex-direction: column;
+    /*Coloca los elementos uno debajo del otro*/
+    justify-content: center;
+    /*Centra el contenido verticalmente*/
+    align-items: center;
+    /*Centra el contenido horizontalmente*/
 
 }
 
 /*Recuadro semitransparente que contiene el logo y el texto*/
 header .recuadro {
-    background-color: rgba(245, 245, 220, 0.6); 
-    border-radius: 15px; /*Bordes redondeados*/
-    width: 80%; /*Ocupa el 80% del espacio disponible*/
-    text-align: center; /*Centra el contenido dentro*/
-    
+    background-color: rgba(245, 245, 220, 0.6);
+    border-radius: 15px;
+    /*Bordes redondeados*/
+    width: 80%;
+    /*Ocupa el 80% del espacio disponible*/
+    text-align: center;
+    /*Centra el contenido dentro*/
+
 }
 
 header .logo {
-    height: 220px; /* tamaño del logo */
+    height: 220px;
+    /* tamaño del logo */
 }
 
 
 /*--MENÚ DE NAVEGACIÓN--*/
-.contenedor { 
+.contenedor {
     border: 1px solid black;
-    padding: 10px; /*Espacio interno*/
-    width: 100%; /* Ocupa todo el ancho disponible */
+    padding: 10px;
+    /*Espacio interno*/
+    width: 100%;
+    /* Ocupa todo el ancho disponible */
     min-height: 50px;
     display: flex;
-    flex-wrap: wrap; /* Permite que los botones bajen de línea si no caben */
-    justify-content: flex-end; 
+    flex-wrap: wrap;
+    /* Permite que los botones bajen de línea si no caben */
+    justify-content: flex-end;
     background-color: white;
-    box-sizing: border-box; /*Al tener width: 100%, el borde y el padding ya están incluidos dentro de ese 100%,
+    box-sizing: border-box;
+    /*Al tener width: 100%, el borde y el padding ya están incluidos dentro de ese 100%,
     por lo que no se desbordará del ancho de la pantalla ni aparecerán barras de desplazamiento horizontales.*/
 
-}  
+}
 
 
-/*Los botones del menú de navegación*/            
+/*Los botones del menú de navegación*/
 .elemento {
-    flex: 1 1 150px; /* Cada botón puede crecer o encoger */
+    flex: 1 1 150px;
+    /* Cada botón puede crecer o encoger */
     max-width: 200px;
     text-align: center;
-    margin: 5px; /*Espacio entre botones*/
-                    
+    margin: 5px;
+    /*Espacio entre botones*/
+
 }
 
 img {
     max-width: 100%;
-    height: auto; /*Mantiene proporciones originales*/
+    height: auto;
+    /*Mantiene proporciones originales*/
 
 }
 
@@ -83,17 +110,24 @@ img:hover {
 
 /*--PÁGINA INICIO--*/
 .inicio {
-    display: flex; /*Muestra texto e imagen en la misma linea*/
-    align-items:center; /*Centra verticalmente ambos elementos*/
-    justify-content: space-between; /*Deja espacio entre texto e imagen*/
-    gap: 20px; /*Espacio entre texto e imagen*/
-    padding: 20px; /*Margen interno*/
+    display: flex;
+    /*Muestra texto e imagen en la misma linea*/
+    align-items: center;
+    /*Centra verticalmente ambos elementos*/
+    justify-content: space-between;
+    /*Deja espacio entre texto e imagen*/
+    gap: 20px;
+    /*Espacio entre texto e imagen*/
+    padding: 20px;
+    /*Margen interno*/
 
 }
 
 .introducción {
-    flex: 1; /*Ocupa la mitad disponible*/
-    max-width: 50%; /*Limita el ancho al 50% del contenedor*/
+    flex: 1;
+    /*Ocupa la mitad disponible*/
+    max-width: 50%;
+    /*Limita el ancho al 50% del contenedor*/
 
 }
 
@@ -102,7 +136,8 @@ img:hover {
 }
 
 .imagenInicio {
-    flex: 1; /*Ocupa la otra mitad disponible*/
+    flex: 1;
+    /*Ocupa la otra mitad disponible*/
     max-width: 50%;
 
 }
@@ -110,12 +145,17 @@ img:hover {
 
 /*--PÁGINA PRODUCTOS--*/
 .imagenes {
-    display: flex; 
-    justify-content: center; /*Centra horizontalmente el contenido*/
-    align-items: flex-start; /*Alinea al inicio verticalmente*/
-    flex-wrap: wrap; /*El contenido salta de linea si no entra en la pantalla*/
-    gap: 40px; /*Espacio entre las imagenes*/
-    padding: 40px 20px; /*Margen interno (40px arriba/abajo) (20px izquierda/derecha)*/
+    display: flex;
+    justify-content: center;
+    /*Centra horizontalmente el contenido*/
+    align-items: flex-start;
+    /*Alinea al inicio verticalmente*/
+    flex-wrap: wrap;
+    /*El contenido salta de linea si no entra en la pantalla*/
+    gap: 40px;
+    /*Espacio entre las imagenes*/
+    padding: 40px 20px;
+    /*Margen interno (40px arriba/abajo) (20px izquierda/derecha)*/
 
 }
 
@@ -123,29 +163,39 @@ img:hover {
 .pelicula {
     display: flex;
     flex-direction: column;
-    align-items: center; /*Alinea el contenido horizontalmente*/
+    align-items: center;
+    /*Alinea el contenido horizontalmente*/
     text-align: center;
-    background-color: #d4d4d4; 
-    border-radius: 15px; /*Esquinas redondeadas*/
-    padding: 20px; /*Espacio interior*/
+    background-color: #d4d4d4;
+    border-radius: 15px;
+    /*Esquinas redondeadas*/
+    padding: 20px;
+    /*Espacio interior*/
     transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /*Sombra suave*/
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /*Sombra suave*/
 
 }
 
 /*Estilo de las imagenes de la pelicula*/
 .pelicula img {
     width: 250px;
-    height: auto; /*Mantiene proporciones*/
-    border-radius: 10px; /*Esquinas redondeadas*/
-    transition: transform 0.3 ease, box-shadow 0.3s ease; /*Efecto al pasar el raton*/
-    
+    height: auto;
+    /*Mantiene proporciones*/
+    border-radius: 10px;
+    /*Esquinas redondeadas*/
+    transition: transform 0.3 ease, box-shadow 0.3s ease;
+    /*Efecto al pasar el raton*/
+
 }
 
 .pelicula img:hover {
-    transform: scale(1.1); /*Agranda la imagen*/
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2); /*Sombra*/
-    cursor: pointer; /*Cambia el cursor a mano*/
+    transform: scale(1.1);
+    /*Agranda la imagen*/
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /*Sombra*/
+    cursor: pointer;
+    /*Cambia el cursor a mano*/
 
 }
 
@@ -153,21 +203,27 @@ img:hover {
 /*Enlaces de las peliculas*/
 .pelicula a {
     background-color: #2e7d32;
-    display: inline-block; /*Alinea el contenido*/
-    margin-top: 10px; /*Espacio entre imagen y texto*/
+    display: inline-block;
+    /*Alinea el contenido*/
+    margin-top: 10px;
+    /*Espacio entre imagen y texto*/
     font-size: 18px;
     color: #ffffff;
-    text-decoration: none; /*Quita el subrayado*/
-    font-weight: bold; /*Texto en negrita*/
-    padding: 8px 16px; /*Espacio interno del boton*/
-    border-radius: 6px; 
+    text-decoration: none;
+    /*Quita el subrayado*/
+    font-weight: bold;
+    /*Texto en negrita*/
+    padding: 8px 16px;
+    /*Espacio interno del boton*/
+    border-radius: 6px;
     transition: background-color 0.3s ease, transform 0.3s ease;
 
 }
 
 .pelicula a:hover {
-    text-decoration: underline; /*Subraya el texto*/
-    background-color: #1b5e20; 
+    text-decoration: underline;
+    /*Subraya el texto*/
+    background-color: #1b5e20;
     transform: scale(1.05);
 
 }
@@ -176,41 +232,54 @@ img:hover {
 .contenido {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /*Centra el contenido horizontalmente*/
-    gap: 30px; /*Espacio entre contenido*/
-    padding: 50px; /*Espacio interno*/
+    justify-content: center;
+    /*Centra el contenido horizontalmente*/
+    gap: 30px;
+    /*Espacio entre contenido*/
+    padding: 50px;
+    /*Espacio interno*/
     background-color: #f9f9f9;
 }
-        
+
 .información {
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     padding: 25px;
     max-width: 500px;
-    flex: 1 1 350px; /*Permite que las tarjetas se agranden o encojan segun el tamaño*/
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /*Suaviza el efecto hover*/
+    flex: 1 1 350px;
+    /*Permite que las tarjetas se agranden o encojan segun el tamaño*/
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /*Suaviza el efecto hover*/
 }
-        
+
 .información:hover {
-    transform: translateY(-5px); /*Levanta la tarjeta al pasar el raton por encima*/
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /*Aumenta la sombra para resaltar*/
+    transform: translateY(-5px);
+    /*Levanta la tarjeta al pasar el raton por encima*/
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    /*Aumenta la sombra para resaltar*/
 }
-        
+
 .información h2 {
     color: #2e7d32;
-    margin-bottom: 15px; /*Espacio debajo del titulo*/
+    margin-bottom: 15px;
+    /*Espacio debajo del titulo*/
 }
-        
-.información p, .información ul {
-    color: #333;
-    font-size: 1.1em; /*Agranda un poco el tamaño de la letra*/
-    line-height: 1.6em; /*Altura de linea*/
-}
-        
+
+.información p,
 .información ul {
-    list-style-type: square; /*Organiza las listas en viñetas cuadradas*/
-    padding-left: 20px; /*Sangria para separar el texto del borde*/
+    color: #333;
+    font-size: 1.1em;
+    /*Agranda un poco el tamaño de la letra*/
+    line-height: 1.6em;
+    /*Altura de linea*/
+}
+
+.información ul {
+    list-style-type: square;
+    /*Organiza las listas en viñetas cuadradas*/
+    padding-left: 20px;
+    /*Sangria para separar el texto del borde*/
 }
 
 
@@ -220,75 +289,97 @@ img:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 40px; /*Espacio entre ellos*/
-    padding: 50px; /*Espacio interior*/
+    gap: 40px;
+    /*Espacio entre ellos*/
+    padding: 50px;
+    /*Espacio interior*/
     background-color: rgb(255, 255, 255);
     color: #333;
-    align-items: flex-start; /*Alinea los elementos al principio verticalmente*/
+    align-items: flex-start;
+    /*Alinea los elementos al principio verticalmente*/
 
 }
 
 .texto {
-    flex: 1 1 300px; /*Su ancho base empieza con 300px, si hay espacio agranda (el primer 1 -flex-grow: 1-) y si no hay encoje (el segundo 1 -0 significaria que no puede encojer y se sobresaldria-)*/
+    flex: 1 1 300px;
+    /*Su ancho base empieza con 300px, si hay espacio agranda (el primer 1 -flex-grow: 1-) y si no hay encoje (el segundo 1 -0 significaria que no puede encojer y se sobresaldria-)*/
     max-width: 400px;
-    font-size: 1.1em; /*Tamaño de texto*/
-    line-height: 1.6em; /*Altura de linea*/
+    font-size: 1.1em;
+    /*Tamaño de texto*/
+    line-height: 1.6em;
+    /*Altura de linea*/
 }
 
 .tabla {
-    flex: 1 1 500px; /*Al igual que antes, empieza con una base de 500px, si hay espacio agranda y si falta espacio encoje*/
+    flex: 1 1 500px;
+    /*Al igual que antes, empieza con una base de 500px, si hay espacio agranda y si falta espacio encoje*/
 }
 
 .tabla-sostenibilidad {
-   width: 100%;
-    border-collapse: collapse; /*Los bordes de las celdas se combinan en un solo borde compartido*/
+    width: 100%;
+    border-collapse: collapse;
+    /*Los bordes de las celdas se combinan en un solo borde compartido*/
 
 }
 
 .tabla-sostenibilidad th {
-  background-color: #2e7d32;
-  color: white;
-  text-align: left; /*Alinea el texto a la izquierda*/
-  padding: 12px; /*Espacio interno*/
-  font-size: 1.1em; /*Agranda un poco el tamaño de la letra*/
+    background-color: #2e7d32;
+    color: white;
+    text-align: left;
+    /*Alinea el texto a la izquierda*/
+    padding: 12px;
+    /*Espacio interno*/
+    font-size: 1.1em;
+    /*Agranda un poco el tamaño de la letra*/
 }
 
 .tabla-sostenibilidad td {
-padding: 15px; /*Espacio interno en celdas*/
-  
+    padding: 15px;
+    /*Espacio interno en celdas*/
+
 }
 
 
 /*ALTERNANCIA DE COLORES EN FILAS*/
 .tabla-sostenibilidad tr:nth-child(even) td:first-child {
-  background-color: #c8e6c9; /*Color para filas pares en la primera columna*/
+    background-color: #c8e6c9;
+    /*Color para filas pares en la primera columna*/
 }
 
 .tabla-sostenibilidad tr:nth-child(odd) td:first-child {
-  background-color: #a5d6a7; /*Color para filas impares en la primera columna*/
+    background-color: #a5d6a7;
+    /*Color para filas impares en la primera columna*/
 }
 
 .tabla-sostenibilidad tr:nth-child(even) td:last-child {
-  background-color: #f1f8e9; /*Color para filas pares en la segunda columna*/
+    background-color: #f1f8e9;
+    /*Color para filas pares en la segunda columna*/
 }
 
 .tabla-sostenibilidad tr:nth-child(odd) td:last-child {
-  background-color: #e8f5e9; /*Color para filas impares en la segunda columa*/
+    background-color: #e8f5e9;
+    /*Color para filas impares en la segunda columa*/
 }
 
 /*SOLO PARA LA PRIMERA COLUMNA*/
 .tabla-sostenibilidad td:first-child {
-  font-weight: bold; /*Letra en negrita*/
-  width: 35%; /*Mas estrecha que la segunda columna*/
+    font-weight: bold;
+    /*Letra en negrita*/
+    width: 35%;
+    /*Mas estrecha que la segunda columna*/
 }
 
 .imagenesSost {
-   text-align: center;
-   margin-top: 40px; /*Espacio superior*/
-   display: flex; /*Distribuye imagenes con flexbox*/
-   justify-content: center; /*Centra horizontalmente*/
-   flex-wrap: wrap; 
-   gap: 20px; /*Espacio entre imagenes*/
+    text-align: center;
+    margin-top: 40px;
+    /*Espacio superior*/
+    display: flex;
+    /*Distribuye imagenes con flexbox*/
+    justify-content: center;
+    /*Centra horizontalmente*/
+    flex-wrap: wrap;
+    gap: 20px;
+    /*Espacio entre imagenes*/
 
 }
 
@@ -299,54 +390,72 @@ padding: 15px; /*Espacio interno en celdas*/
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px; /*Espacio entre cajas*/
-    padding: 50px; /*Espacio interno*/
+    gap: 30px;
+    /*Espacio entre cajas*/
+    padding: 50px;
+    /*Espacio interno*/
     background-color: #f9f9f9;
 
 }
-        
+
 .caja {
     background-color: #ffffff;
-    border-radius: 12px; /*Bordes redondeados*/
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /*Sombra*/
+    border-radius: 12px;
+    /*Bordes redondeados*/
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /*Sombra*/
     padding: 25px;
     max-width: 500px;
-    flex: 1 1 350px; /*Empieza con una base de 350px, si hay espacio agranda y si falta espacio encoje*/
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /*Animacion suave*/
-         
+    flex: 1 1 350px;
+    /*Empieza con una base de 350px, si hay espacio agranda y si falta espacio encoje*/
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /*Animacion suave*/
+
 }
-        
+
 .caja:hover {
-    transform: translateY(-5px); /*Efecto al pasar el raton*/
+    transform: translateY(-5px);
+    /*Efecto al pasar el raton*/
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-}  
+}
 
 .caja h2 {
     color: #2e7d32;
-    margin-bottom: 15px; /*Espacio abajo del titulo*/
+    margin-bottom: 15px;
+    /*Espacio abajo del titulo*/
 }
-        
-.caja p, .caja ul {
-    color: #333;
-    font-size: 1.1em; /*Agranda un poco la letra*/
-    line-height: 1.6em; /*Altura de linea*/
-}
-        
+
+.caja p,
 .caja ul {
-    list-style-type: square; /**Organiza las listas en viñetas cuadradas**/
-    padding-left: 20px; /*Espacio interno a la izquierda*/
+    color: #333;
+    font-size: 1.1em;
+    /*Agranda un poco la letra*/
+    line-height: 1.6em;
+    /*Altura de linea*/
 }
-        
+
+.caja ul {
+    list-style-type: square;
+    /**Organiza las listas en viñetas cuadradas**/
+    padding-left: 20px;
+    /*Espacio interno a la izquierda*/
+}
+
 .caja.grande {
-    max-width: 1000px; /*Tamaño para la caja mas ancha*/
+    max-width: 1000px;
+    /*Tamaño para la caja mas ancha*/
     text-align: center;
 }
-        
+
 .imagenesSost img {
-    height: 250px; /*Altura fija*/
-    display: inline-block; /*Permite que este una al lado de la otra*/
-    width: auto; /*Mantiene proporcion*/
-    margin: 10px; /*Espacio alrededor*/
+    height: 250px;
+    /*Altura fija*/
+    display: inline-block;
+    /*Permite que este una al lado de la otra*/
+    width: auto;
+    /*Mantiene proporcion*/
+    margin: 10px;
+    /*Espacio alrededor*/
 
 }
 
@@ -355,124 +464,140 @@ padding: 15px; /*Espacio interno en celdas*/
 .footer {
     background-color: #022d55;
     color: rgb(255, 255, 255);
-    padding: 40px 20px; /*Margen interno (40px arriba/abajo) (20px izquierda/derecha)*/
-    margin-top: 40px; /*Espacio con respecto al contenido superior*/
+    padding: 40px 20px;
+    /*Margen interno (40px arriba/abajo) (20px izquierda/derecha)*/
+    margin-top: 40px;
+    /*Espacio con respecto al contenido superior*/
 }
 
 .footer-contenido {
     display: flex;
-    justify-content: space-between; /*Espacio entre contenido*/
+    justify-content: space-between;
+    /*Espacio entre contenido*/
     flex-wrap: wrap;
     max-width: 1200px;
-    margin: 0 auto; /*Centra horizontalmente el contenido (0 arriba y abajo y auto a los lados)*/
-    gap: 30px; /*Espacio entre los elementos hijos del contenedor footer*/
+    margin: 0 auto;
+    /*Centra horizontalmente el contenido (0 arriba y abajo y auto a los lados)*/
+    gap: 30px;
+    /*Espacio entre los elementos hijos del contenedor footer*/
 
 }
 
 .footer-seccion {
-    flex: 1; /*Cada seccion ocupa espacio proporcional*/
-    min-width: 250px; /*Evita que sean demasiado pequeñas*/
+    flex: 1;
+    /*Cada seccion ocupa espacio proporcional*/
+    min-width: 250px;
+    /*Evita que sean demasiado pequeñas*/
 }
 
 .icono {
-    width: 30px; /*Tamaño de iconos*/
-    vertical-align: middle; /*Alinea con el texto*/
-    margin-right: 8px; /*Espacio entre icono y texto*/
+    width: 30px;
+    /*Tamaño de iconos*/
+    vertical-align: middle;
+    /*Alinea con el texto*/
+    margin-right: 8px;
+    /*Espacio entre icono y texto*/
 
 }
 
 .icono:hover {
-    transform: scale(2.0); /*Duplica su tamaño*/
-    transition: 0.2s ease-in-out; /*Animacion suave*/
+    transform: scale(2.0);
+    /*Duplica su tamaño*/
+    transition: 0.2s ease-in-out;
+    /*Animacion suave*/
 }
 
 
 .footer p {
-    margin: 5px 0; /*Espacio vertical entre parrafos*/
-    line-height: 1.5; /*Aumenta la separación de líneas*/
+    margin: 5px 0;
+    /*Espacio vertical entre parrafos*/
+    line-height: 1.5;
+    /*Aumenta la separación de líneas*/
 }
 
 
 
 
 
- .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 400px;
-        }
+.card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
 
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 1.5rem;
-        }
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
 
-        .form-group {
-            margin-bottom: 1rem;
-        }
+.form-group {
+    margin-bottom: 1rem;
+}
 
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #666;
-            font-weight: 600;
-        }
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #666;
+    font-weight: 600;
+}
 
-        input {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #ddd;
-            border-radius: 6px;
-            font-size: 1rem;
-            box-sizing: border-box; /* Para que el padding no rompa el ancho */
-            transition: border-color 0.3s;
-        }
+input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    /* Para que el padding no rompa el ancho */
+    transition: border-color 0.3s;
+}
 
-        input:focus {
-            border-color: #4a90e2;
-            outline: none;
-        }
+input:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
 
-        button {
-            width: 100%;
-            padding: 0.75rem;
-            background-color: #24272b;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 1rem;
-            transition: background-color 0.3s;
-        }
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #24272b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
 
-        button:hover {
-            background-color: #9e8705;
-        }
+button:hover {
+    background-color: #9e8705;
+}
 
-        /* Área de mensajes */
-        #mensajeResultado {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            border-radius: 6px;
-            text-align: center;
-            font-weight: bold;
-            display: none; /* Oculto por defecto */
-        }
+/* Área de mensajes */
+#mensajeResultado {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+    /* Oculto por defecto */
+}
 
-        .error {
-            background-color: #ffebee;
-            color: #c62828;
-            border: 1px solid #ef9a9a;
-        }
+.error {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
 
-        .success {
-            background-color: #e8f5e9;
-            color: #2e7d32;
-            border: 1px solid #a5d6a7;
-        }
+.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
