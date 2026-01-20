@@ -47,3 +47,8 @@ Reto2-html/
 └── documentos/                # Archivos adicionales
     ├── datos-usuarios.json    # Datos en JSON
     └── notas.txt              # Notas de desarrollo
+
+
+    busco error 
+
+    error ha quitado 
