@@ -6,6 +6,41 @@
     gap: 0;
     margin-top: 20px;
 }
+.hero {
+    background-color: rgb(233, 13, 13);
+    padding: 30px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.header-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* título izquierda, logo derecha */
+    align-items: center;
+}
+
+.logo {
+    width: 200px; /* tamaño del logo */
+    height: auto;
+}
+.titulo { font-size: 3.5rem; /* tamaño grande */
+     font-weight: 900; /* más grueso */ 
+     letter-spacing: 3px; /* separación tipo cartel */ 
+     color: white; text-transform: uppercase; }
+
+/* NAVBAR */ 
+.navbar { background-color: #000; /* negro */
+     padding: 15px 0; } 
+     .navbar ul 
+     { display: flex;
+         justify-content: center; 
+         list-style: none; gap: 40px; }
+          .navbar a { color: #fff; /* blanco */ 
+            text-decoration: none; font-size: 1.2rem; font-weight: 600;
+             transition: color 0.3s ease; } .navbar a:hover { color: #d4af37; /* dorado */ }
+
 
 /* Hero con video */
 .hero-video {
@@ -80,8 +115,4 @@
 
 .login-box button:hover {
     background: #e6b800;
-}
-header{
-
-    background-color: black;
 }
