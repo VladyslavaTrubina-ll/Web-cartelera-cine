@@ -41,8 +41,8 @@
     text-shadow: 0 0 10px black;
 }
 
-/* Login card */
-.login-card {
+/* login-box */
+.login-box {
     background: white;
     padding: 30px;
     border-radius: 10px;
@@ -52,24 +52,24 @@
     justify-content: center;
 }
 
-.login-card h2 {
+.login-box h2 {
     margin-bottom: 20px;
     text-align: center;
 }
 
-.login-card form {
+.login-box form {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.login-card input {
+.login-box input {
     padding: 12px;
     border: 1px solid #aaa;
     border-radius: 5px;
 }
 
-.login-card button {
+.login-box button {
     padding: 12px;
     background: #ffcc00;
     border: none;
@@ -78,7 +78,7 @@
     cursor: pointer;
 }
 
-.login-card button:hover {
+.login-box button:hover {
     background: #e6b800;
 }
 header{
