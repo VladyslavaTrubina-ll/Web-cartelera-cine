@@ -1,38 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <!--este es el link con el css siempre debe ir dentro del head-->
-    <link rel="stylesheet" href="css/estilos.css">
-</head>
-<body>
-<!--Este es el codigo del formulario para ingresar clientes nuevos-->
-<form id="formRegistroCliente" class="form-cliente">
-    <h2>Registro de nuevo cliente</h2>
+    <link rel="stylesheet" href="css/estilos.css" />
+    <script type="module" src="js/header.js"></script>
+  </head>
+  <body>
+    <header id="header"></header>
+    <!--Este es el codigo del formulario para ingresar clientes nuevos-->
+    <form id="formRegistroCliente" class="form-cliente">
+      <h2>Registro de nuevo cliente</h2>
 
-    <label for="dni">DNI:</label>
-    <input type="text" id="dni" required maxlength="9" placeholder="12345678A">
+      <label for="dni">DNI:</label>
+      <input
+        type="text"
+        id="dni"
+        required
+        maxlength="9"
+        placeholder="12345678A"
+      />
 
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" required>
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" required />
 
-    <label for="apellidos">Apellidos:</label>
-    <input type="text" id="apellidos" required>
+      <label for="apellidos">Apellidos:</label>
+      <input type="text" id="apellidos" required />
 
-    <label for="email">Correo electrónico:</label>
-    <input type="email" id="email" required placeholder="correo@ejemplo.com">
+      <label for="email">Correo electrónico:</label>
+      <input
+        type="email"
+        id="email"
+        required
+        placeholder="correo@ejemplo.com"
+      />
 
-    <label for="password">Contraseña:</label>
-    <input type="password" id="password" required minlength="4">
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" required minlength="4" />
 
-    <button type="submit">Registrar cliente</button>
+      <button type="submit">Registrar cliente</button>
 
-    <p id="mensaje"></p>
-</form>
-<!---hasta aqui formulario de registro de cliente-->
+      <p id="mensaje"></p>
+    </form>
+    <!---hasta aqui formulario de registro de cliente-->
     <!--Esto es para activar los modulos, permite importar y exportar-->
     <script type="module" src="js/nuevoCliente.js"></script>
-</body>
+  </body>
 </html>

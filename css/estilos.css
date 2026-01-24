@@ -1,68 +1,93 @@
+/*eliminar estylos default*/
+body,
+html {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
 
+a {
+  text-decoration: underline;
+  color: inherit;
+}
+
+/* header*/
+header {
+  background-color: #333;
+  padding: 10px 20px;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  text-decoration: none;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
 
 /*esta parte son los css del formulario de registro para 
 nuevo cliente*/
 .form-cliente {
-    width: 300px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #f4f4f4;
-    border-radius: 8px;
+  width: 300px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #f4f4f4;
+  border-radius: 8px;
 }
 
 .form-cliente label {
-    display: block;
-    margin-top: 10px;
+  display: block;
+  margin-top: 10px;
 }
 
 .form-cliente input {
-    width: 100%;
-    padding: 6px;
-    margin-top: 4px;
+  width: 100%;
+  padding: 6px;
+  margin-top: 4px;
 }
 
 .form-cliente button {
-    margin-top: 15px;
-    width: 100%;
-    padding: 8px;
-    background: #0077cc;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+  margin-top: 15px;
+  width: 100%;
+  padding: 8px;
+  background: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #mensaje {
-    margin-top: 10px;
-    font-weight: bold;
+  margin-top: 10px;
+  font-weight: bold;
 }
 /*Hasta aqui llega de registro de nuevo cliente en index.html*/
 
-
-//Esta parte va para la parte de la CARTELERA
+/*Esta parte va para la parte de la CARTELERA*/
 .cartelera {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .pelicula-card {
-    width: 200px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    text-align: center;
-    background: #fff;
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  text-align: center;
+  background: #fff;
 }
 
 .pelicula-card img.poster {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
-
-
-
-
-
-//Esta parte va para la parte de la CARTELERA
