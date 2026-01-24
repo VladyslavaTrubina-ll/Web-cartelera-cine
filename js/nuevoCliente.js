@@ -11,77 +11,80 @@ const mensaje = document.getElementById("mensaje");
 console.log("form:", form);
 
 if (form) {
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-        // Obtener valores del formulario
-        const dni = document.getElementById("dni").value;
-        const nombre = document.getElementById("nombre").value;
-        const apellidos = document.getElementById("apellidos").value;
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+    // Obtener valores del formulario
+    const dni = document.getElementById("dni").value;
+    const nombre = document.getElementById("nombre").value;
+    const apellidos = document.getElementById("apellidos").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-        // --------------------------------------
-        // VALIDACIONES: DNI y EMAIL ÚNICOS
-        // --------------------------------------
+    // --------------------------------------
+    // VALIDACIONES: DNI y EMAIL ÚNICOS
+    // --------------------------------------
 
-        // Validar DNI repetido
-        const dniExiste = clientes.some(c => c.dni === dni);
-        if (dniExiste) {
-            mensaje.textContent = "El DNI ya está registrado. Redirigiendo al login...";
-            mensaje.style.color = "red";
+    // Validar DNI repetido
+    const dniExiste = clientes.some((c) => c.dni === dni);
+    if (dniExiste) {
+      mensaje.textContent =
+        "El DNI ya está registrado. Redirigiendo al login...";
+      mensaje.style.color = "red";
 
-            setTimeout(() => {
-                window.location.href = "login.html";
-            }, 2000);
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 2000);
 
-            return;
-        }
+      return;
+    }
 
-        // Validar email repetido
-        const emailExiste = clientes.some(c => c.email === email);
-        if (emailExiste) {
-            mensaje.textContent = "El correo electrónico ya está registrado. Redirigiendo al login...";
-            mensaje.style.color = "red";
+    // Validar email repetido
+    const emailExiste = clientes.some((c) => c.email === email);
+    if (emailExiste) {
+      mensaje.textContent =
+        "El correo electrónico ya está registrado. Redirigiendo al login...";
+      mensaje.style.color = "red";
 
-            setTimeout(() => {
-                window.location.href = "login.html";
-            }, 2000);
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 2000);
 
-            return;
-        }
+      return;
+    }
 
-        // --------------------------------------
-        // CREAR NUEVO CLIENTE
-        // --------------------------------------
+    // --------------------------------------
+    // CREAR NUEVO CLIENTE
+    // --------------------------------------
 
-        const nuevoCliente = {
-            idCliente: clientes.length + 1,
-            dni,
-            nombre,
-            apellidos,
-            email,
-            password
-        };
+    const nuevoCliente = {
+      idCliente: clientes.length + 1,
+      dni,
+      nombre,
+      apellidos,
+      email,
+      password,
+    };
 
-        clientes.push(nuevoCliente);
+    clientes.push(nuevoCliente);
 
-        // Guardar en localStorage
-        localStorage.setItem("clientes", JSON.stringify(clientes));
+    // Guardar en localStorage
+    localStorage.setItem("clientes", JSON.stringify(clientes));
 
-        mensaje.textContent = "Cliente registrado correctamente. Redirigiendo al login...";
-        mensaje.style.color = "green";
+    mensaje.textContent =
+      "Cliente registrado correctamente. Redirigiendo al login...";
+    mensaje.style.color = "green";
 
-        console.log("Cliente añadido:", nuevoCliente);
-        console.log("Lista actualizada de clientes:", clientes);
+    console.log("Cliente añadido:", nuevoCliente);
+    console.log("Lista actualizada de clientes:", clientes);
 
-        // Limpiar formulario
-        form.reset();
+    // Limpiar formulario
+    form.reset();
 
-        // Redirección al login
-        setTimeout(() => {
-            console.log("Redirigiendo ahora...");
-            window.location.href = "login.html";
-        }, 2000);
-    });
+    // Redirección al login
+    setTimeout(() => {
+      console.log("Redirigiendo ahora...");
+      window.location.href = "index.html";
+    }, 2000);
+  });
 }
