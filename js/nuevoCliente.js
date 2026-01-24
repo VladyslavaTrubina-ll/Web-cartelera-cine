@@ -2,7 +2,6 @@
 // FORMULARIO: Registrar nuevo cliente
 // --------------------------------------
 
-import { generarID } from "./idGenerator.js";
 import { clientes } from "./db.js";
 
 const form = document.getElementById("formRegistroCliente");
@@ -68,8 +67,8 @@ if (form) {
 
     clientes.push(nuevoCliente);
 
-    // Guardar en localStorage
-    localStorage.setItem("clientes", JSON.stringify(clientes));
+    // Guardar en sessionStorage
+    sessionStorage.setItem("clientes", JSON.stringify(clientes));
 
     mensaje.textContent =
       "Cliente registrado correctamente. Redirigiendo al login...";
