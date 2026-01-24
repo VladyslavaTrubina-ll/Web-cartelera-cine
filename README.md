@@ -2,6 +2,7 @@
 
 Estructura de index.html
 
+```
 Reto2-html/
 │
 ├── index.html                 # Página principal (registro)
@@ -47,14 +48,12 @@ Reto2-html/
 └── documentos/                # Archivos adicionales
     ├── datos-usuarios.json    # Datos en JSON
     └── notas.txt              # Notas de desarrollo
-
-
-    busco error 
-
-    error ha quitado 
-
+```
 
 Quitar error:
-    git config --global commit.gpgsign false
-    git config --global --unset commit.gpgsing 
-    git config --list --show-origin --show-scope
+
+```
+git config --global commit.gpgsign false
+git config --global --unset commit.gpgsing
+git config --list --show-origin --show-scope
+```
