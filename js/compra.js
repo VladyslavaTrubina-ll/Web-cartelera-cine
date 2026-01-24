@@ -8,7 +8,7 @@ const inputCantidad = document.getElementById("cantidad");
 const precioTotalTexto = document.getElementById("precioTotal");
 
 // Recuperar película seleccionada
-const idPelicula = localStorage.getItem("peliculaSeleccionada");
+const idPelicula = sessionStorage.getItem("peliculaSeleccionada");
 const pelicula = peliculas.find((p) => p.idPelicula == idPelicula);
 
 infoPelicula.innerHTML = `
@@ -72,7 +72,7 @@ function actualizarPrecio() {
 
 // Evento de compra
 document.getElementById("btnComprar").addEventListener("click", () => {
-  const usuario = JSON.parse(localStorage.getItem("usuarioLogueado"));
+  const usuario = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
   if (!usuario) {
     alert("Debes iniciar sesión para comprar entradas");
     window.location.href = "index.html";
@@ -115,7 +115,7 @@ document.getElementById("btnComprar").addEventListener("click", () => {
   };
 
   entradas.push(nuevaEntrada);
-  localStorage.setItem("entradas", JSON.stringify(entradas));
+  sessionStorage.setItem("entradas", JSON.stringify(entradas));
 
   // Crear compra
   const nuevaCompra = {
@@ -129,11 +129,11 @@ document.getElementById("btnComprar").addEventListener("click", () => {
   };
 
   compras.push(nuevaCompra);
-  localStorage.setItem("compras", JSON.stringify(compras));
+  sessionStorage.setItem("compras", JSON.stringify(compras));
 
   // Actualizar aforo
   sesion.espectadores += cantidad;
-  localStorage.setItem("sesiones", JSON.stringify(sesiones));
+  sessionStorage.setItem("sesiones", JSON.stringify(sesiones));
 
   // Mostrar ticket completo
   mensajeCompra.innerHTML = `
@@ -149,8 +149,8 @@ document.getElementById("btnComprar").addEventListener("click", () => {
     `;
   mensajeCompra.style.color = "green";
 });
-// Esperar 5 segundos y cerrar sesión + redirigir
+// Esperar 100 segundos y cerrar sesión + redirigir
 setTimeout(() => {
-  localStorage.removeItem("usuarioLogueado");
+  sessionStorage.removeItem("usuarioLogueado");
   window.location.href = "index.html";
-}, 10000);
+}, 100000);

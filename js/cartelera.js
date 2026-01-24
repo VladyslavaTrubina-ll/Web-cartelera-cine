@@ -1,6 +1,6 @@
 import { peliculas } from "./db.js";
 //Esto evita que alguien entra a cartelera sin login
-const usuario = JSON.parse(localStorage.getItem("usuarioLogueado"));
+const usuario = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
 
 if (!usuario) {
   window.location.href = "index.html";
@@ -29,7 +29,7 @@ listaPeliculas.addEventListener("click", (e) => {
     const id = e.target.getAttribute("data-id");
 
     // Guardar la película seleccionada
-    localStorage.setItem("peliculaSeleccionada", id);
+    sessionStorage.setItem("peliculaSeleccionada", id);
 
     // Ir a la página de detalles
     window.location.href = "pelicula.html";
