@@ -1,13 +1,25 @@
 import { peliculas, sesiones, salas } from "./db.js";
-import { calcularPrecio } from "./main.js";
+import { calcularPrecioYDescuento } from "./main.js";
 
-const contenedor = document.getElementById("detallePelicula");
+const contenedor = document.getElementById("info-pelicula");
 const selectFecha = document.getElementById("selectFecha");
 const selectSesion = document.getElementById("selectSesion");
 const inputCantidad = document.getElementById("cantidad");
 const mensajeError = document.getElementById("mensaje-error");
 const precioTotal = document.getElementById("precioTotal");
 const btnPagar = document.getElementById("btnPagar");
+
+// Evento para manejar "Enter" en inputCantidad
+// preventir form submit y unfocus al hacer Enter
+inputCantidad.addEventListener("keydown", logKey);
+function logKey(e) {
+  if (e.code === "Enter") {
+    e.preventDefault();
+    if (inputCantidad.value >= 0 || !isNaN(inputCantidad.value)) {
+      inputCantidad.blur();
+    }
+  }
+}
 
 // limpiar sessionStorage
 
@@ -36,12 +48,9 @@ if (!pelicula) {
 } else {
   contenedor.innerHTML = `
         <h2>${pelicula.titulo}</h2>
-
-
         <img src="${pelicula.foto}" alt="${pelicula.titulo}" 
         style="width:250px; border-radius:10px; margin-bottom:15px;">
-
-
+ 
         <p><strong>Género:</strong> ${pelicula.genero}</p>
         <p><strong>Duración:</strong> ${pelicula.duracion} min</p>
         <p><strong>Precio:</strong> ${pelicula.precio}</p>
@@ -49,7 +58,6 @@ if (!pelicula) {
         
     `;
 }
-
 // Filtrar sesiones de esa película
 const sesionesPelicula = sesiones.filter(
   (x) => x.idPelicula == pelicula.idPelicula,
@@ -178,58 +186,73 @@ function actualizarEntradas(sesionSeleccionada) {
   inputCantidad.max = sillasDisponibles(sesionSeleccionada);
 }
 
-inputCantidad.addEventListener("change", verificarCantidad);
 inputCantidad.addEventListener("input", actualizarPrecio);
 
-function verificarCantidad() {
-  const cantidad = parseInt(inputCantidad.value);
-  const maximo = parseInt(inputCantidad.max);
-  if (cantidad <= 0) {
+function verificarCantidad(cantidad, maximo) {
+  if (cantidad <= 0 || isNaN(cantidad)) {
     mensajeError.textContent = "La cantidad debe ser mayor que 0";
-    sessionStorage.removeItem("cantidadEntradas");
-    btnPagar.disabled = true;
-    return;
-  }
-  if (cantidad > maximo) {
+    return false;
+  } else if (cantidad > maximo) {
     mensajeError.textContent = "Solo " + maximo + " asientos disponibles";
-    sessionStorage.removeItem("cantidadEntradas");
-    btnPagar.disabled = true;
+    return false;
   } else {
     mensajeError.textContent = "";
-    sessionStorage.setItem("cantidadEntradas", cantidad);
-    btnPagar.disabled = false;
+    return true;
   }
 }
+
+let precioCalculado = 0.0;
+let descuentoAplicado = 0.0;
+let cantidadEntradas = 0;
 
 function actualizarPrecio() {
   const sesion = JSON.parse(sessionStorage.getItem("sesionSeleccionada"));
   const cantidad = parseInt(inputCantidad.value);
-  const total = calcularPrecio(cantidad, sesion.precio);
+  const maximo = parseInt(inputCantidad.max);
 
-  if (cantidad > 0) {
-    precioTotal.innerHTML = `Total a pagar: ${total.toFixed(2)}€ <span id="descuento"></span>`;
+  console.log("Cantidad entrada:", cantidad);
 
-    sessionStorage.setItem("precioTotal", total.toFixed(2));
+  const cantidadValida = verificarCantidad(cantidad, maximo);
+
+  const { precio, descuentoCalculado } = calcularPrecioYDescuento(
+    cantidad,
+    sesion.precio,
+  );
+  console.log("Precio calculado:", precio);
+
+  if (cantidadValida) {
+    precioTotal.innerHTML = `Total a pagar: ${precio.toFixed(2)}€ <span id="descuento"></span>`;
+
+    precioCalculado = precio;
+    cantidadEntradas = cantidad;
+    descuentoAplicado = descuentoCalculado;
 
     // Mostrar descuento aplicado
     const descuento = document.getElementById("descuento");
 
-    if (cantidad >= 3) {
-      descuento.textContent = "(30% de descuento aplicado)";
-    } else if (cantidad == 2) {
-      descuento.textContent = "(20% de descuento aplicado)";
+    if (descuentoCalculado > 0) {
+      descuento.textContent = `(${(descuentoCalculado * 100).toFixed(0)}% de descuento aplicado)`;
     } else {
       descuento.textContent = "";
     }
+    btnPagar.disabled = false;
   } else {
     precioTotal.innerHTML = `Total a pagar: 0.00€ <span id="descuento"></span>`;
-    sessionStorage.removeItem("precioTotal");
+
+    precioCalculado = 0.0;
+    descuentoAplicado = 0.0;
+    cantidadEntradas = 0;
+
+    btnPagar.disabled = true;
   }
 }
 
 // Evento para comprar
 document.addEventListener("click", (e) => {
   if (e.target.id === "btnPagar") {
+    sessionStorage.setItem("precioTotal", precioCalculado.toFixed(2));
+    sessionStorage.setItem("descuentoAplicado", descuentoAplicado);
+    sessionStorage.setItem("cantidadEntradas", cantidadEntradas);
     window.location.href = "compra.html";
   }
 });
