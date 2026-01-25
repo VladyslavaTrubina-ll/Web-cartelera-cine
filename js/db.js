@@ -79,7 +79,7 @@ export const salas = [
 // -----------------------------
 const sesionesBase = [
   {
-    idSesion: 1,
+    idSesion: 10,
     fecha: "2025-03-15",
     horaInicio: "18:00",
     horaFin: "20:50",
@@ -87,6 +87,46 @@ const sesionesBase = [
     idPelicula: 1,
     precio: 8.5,
     espectadores: 45,
+  },
+  {
+    idSesion: 11,
+    fecha: "2025-03-15",
+    horaInicio: "21:00",
+    horaFin: "23:50",
+    idSala: 1,
+    idPelicula: 1,
+    precio: 8.5,
+    espectadores: 45,
+  },
+  {
+    idSesion: 12,
+    fecha: "2025-03-16",
+    horaInicio: "18:00",
+    horaFin: "20:50",
+    idSala: 1,
+    idPelicula: 1,
+    precio: 8.5,
+    espectadores: 45,
+  },
+  {
+    idSesion: 13,
+    fecha: "2025-03-16",
+    horaInicio: "13:00",
+    horaFin: "15:50",
+    idSala: 1,
+    idPelicula: 1,
+    precio: 8.5,
+    espectadores: 45,
+  },
+  {
+    idSesion: 14,
+    fecha: "2025-03-16",
+    horaInicio: "22:00",
+    horaFin: "00:50",
+    idSala: 1,
+    idPelicula: 1,
+    precio: 8.5,
+    espectadores: 80,
   },
   {
     idSesion: 2,
@@ -140,12 +180,7 @@ const sesionesBase = [
   },
 ];
 
-const sesionesGuardadas = JSON.parse(sessionStorage.getItem("sesiones"));
-
-export const sesiones =
-  sesionesGuardadas && sesionesGuardadas.length > 0
-    ? sesionesGuardadas
-    : sesionesBase;
+export const sesiones = sesionesBase;
 
 // -----------------------------
 // ENTRADAS
