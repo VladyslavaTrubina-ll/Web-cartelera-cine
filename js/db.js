@@ -1,6 +1,6 @@
 // db.js — Base de datos simulada del cine
 
-//  Películas (no necesitan sessionStorage)
+//  Películas
 export const peliculas = [
   {
     idPelicula: 1,
@@ -64,7 +64,7 @@ export const peliculas = [
   },
 ];
 
-// 🏛️ Salas (no necesitan sessionStorage)
+// Salas
 export const salas = [
   { idSala: 1, nombre: "Sala Principal", numeroSillas: 150, sesiones: [1, 2] },
   { idSala: 2, nombre: "Sala Azul", numeroSillas: 100, sesiones: [3] },
@@ -184,45 +184,39 @@ export const sesiones = sesionesBase;
 
 // -----------------------------
 // ENTRADAS
+// idEntrada, idSesion, precioEntrada (precioTotal / numEntradas)
+//
 // -----------------------------
 const entradasBase = [
   {
     idEntrada: 1,
     idSesion: 1,
-    cantidadPersonas: 2,
-    precio: 17.0,
-    descuento: 0.1,
+    precioEntrada: 17.0,
   },
-  { idEntrada: 2, idSesion: 2, cantidadPersonas: 1, precio: 7.5, descuento: 0 },
+  { idEntrada: 2, idSesion: 2, precioEntrada: 7.5 },
   {
     idEntrada: 3,
     idSesion: 3,
-    cantidadPersonas: 3,
-    precio: 27.0,
-    descuento: 0.05,
+    precioEntrada: 27.0,
   },
   {
     idEntrada: 4,
     idSesion: 4,
-    cantidadPersonas: 2,
-    precio: 16.0,
-    descuento: 0,
+    precioEntrada: 16.0,
   },
   {
     idEntrada: 5,
     idSesion: 5,
-    cantidadPersonas: 4,
-    precio: 26.0,
-    descuento: 0.1,
+    precioEntrada: 26.0,
   },
-  { idEntrada: 6, idSesion: 6, cantidadPersonas: 1, precio: 7.8, descuento: 0 },
+  { idEntrada: 6, idSesion: 6, precioEntrada: 7.8 },
 ];
 
-export const entradas =
-  JSON.parse(sessionStorage.getItem("entradas")) || entradasBase;
+export const entradas = entradasBase;
 
 // -----------------------------
 // COMPRAS
+// idCompra, entradas (array de idEntrada), idCliente, fecha, hora, precioTotal, descuentoAplicado
 // -----------------------------
 const comprasBase = [
   {
@@ -270,19 +264,9 @@ const comprasBase = [
     precioTotal: 7.8,
     descuentoAplicado: 0,
   },
-  {
-    idCompra: 6,
-    entradas: [1, 2],
-    idCliente: 6,
-    fecha: "2025-03-15",
-    hora: "15:20",
-    precioTotal: 24.5,
-    descuentoAplicado: 0.05,
-  },
 ];
 
-export const compras =
-  JSON.parse(sessionStorage.getItem("compras")) || comprasBase;
+export const compras = comprasBase;
 
 // -----------------------------
 // CLIENTES
@@ -298,5 +282,4 @@ const clientesBase = [
   },
 ];
 
-export const clientes =
-  JSON.parse(sessionStorage.getItem("clientes")) || clientesBase;
+export const clientes = clientesBase;
