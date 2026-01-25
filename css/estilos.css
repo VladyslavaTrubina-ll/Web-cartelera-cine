@@ -91,3 +91,133 @@ nuevo cliente*/
   border-radius: 10px;
   margin-bottom: 10px;
 }
+
+/* Form compra*/
+
+#mensaje-error {
+  color: red;
+  font-weight: bold;
+}
+
+#descuento {
+  font-weight: bold;
+  color: green;
+}
+
+/* radio botones */
+.radio-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.radio-wrapper label {
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+  min-width: 140px;
+  justify-content: space-between;
+  padding: 11px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px #d8dee4;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.radio-wrapper label:not(:has(input:disabled)):hover {
+  background: #f5f6f8;
+}
+
+.radio-wrapper label:has(input:disabled) {
+  opacity: 0.8;
+  cursor: not-allowed;
+  background: #f5f6f8;
+}
+
+.radio-wrapper label:has(input:checked) {
+  box-shadow:
+    0 0 0 1.5px rgb(37 99 235),
+    0 0 0 1px #d8dee4;
+}
+
+.radio-wrapper label:has(input:focus) {
+  box-shadow:
+    0 0 0 1.5px rgb(37 99 235),
+    0 0 0 4px rgb(191 219 254),
+    0 0 0 1px #d8dee4;
+}
+
+.radio-wrapper label .inputAndLeftText {
+  display: flex;
+  gap: 0.75em;
+}
+
+.radio-wrapper label .inputAndLeftText div {
+  color: rgb(55 65 81);
+  line-height: 1.25rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-wrapper label .fecha-sesion,
+.radio-wrapper label .precio {
+  font-weight: 500;
+}
+
+.radio-wrapper label .num-sesion,
+.radio-wrapper label .num-sillas {
+  color: rgb(107 114 128);
+}
+
+.radio-wrapper input,
+.radio-wrapper label .precio {
+  color: rgb(37 99 235);
+}
+
+.radio-wrapper label .precio {
+  margin-top: 1px;
+}
+
+.radio-wrapper input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  display: inline-block;
+  vertical-align: middle;
+  background-origin: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+
+  border: 1px solid rgb(209 213 219);
+
+  box-shadow: 0 1px 2px 0 #0000000d;
+  border-radius: 9999px;
+  width: 1rem;
+  height: 1rem;
+
+  margin: 2px 0 0;
+}
+
+.radio-wrapper input:checked {
+  border-color: #0000;
+  background-color: currentColor;
+  background-image: url(data:image/svg+xml;charset=utf-8;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTYgMTYiIGZpbGw9IiNmZmYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjMiLz48L3N2Zz4=);
+}
+
+.radio-wrapper input:focus {
+  box-shadow:
+    0 0 0 3px rgb(191 219 254),
+    0 1px 2px 0 #0000000d;
+}
+
+.radio-wrapper input:disabled,
+.radio-wrapper label:has(input:disabled) .precio {
+  color: rgb(156 163 175);
+}
