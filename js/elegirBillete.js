@@ -23,11 +23,7 @@ function logKey(e) {
 
 // limpiar sessionStorage
 
-function limpiarSessionStorage() {
-  sessionStorage.removeItem("sesionSeleccionada");
-  sessionStorage.removeItem("cantidadEntradas");
-  sessionStorage.removeItem("precioTotal");
-
+function limpiar() {
   selectSesion.innerHTML = "<p>Seleccione una fecha primero</p>";
 
   inputCantidad.value = 0;
@@ -37,7 +33,7 @@ function limpiarSessionStorage() {
   btnPagar.disabled = true;
 }
 
-limpiarSessionStorage();
+limpiar();
 
 // Recuperar la película seleccionada
 const id = sessionStorage.getItem("peliculaSeleccionada");
@@ -101,7 +97,7 @@ let fechaSeleccionada = "";
 function setFecha(event) {
   fechaSeleccionada = event.target.value;
   console.log("Fecha seleccionada:", fechaSeleccionada);
-  limpiarSessionStorage();
+  limpiar();
   actualizarSesiones(fechaSeleccionada);
 }
 
@@ -157,21 +153,15 @@ function actualizarSesiones(fechaSeleccionada) {
 }
 
 let sesionSeleccionadaId = 0;
+let sesionSeleccionada = null;
 
 function setSesion(event) {
   sesionSeleccionadaId = event.target.value;
   console.log("Sesion seleccionada:", sesionSeleccionadaId);
 
-  var sesionSeleccionada = sesiones.find(
-    (s) => s.idSesion == sesionSeleccionadaId,
-  );
+  sesionSeleccionada = sesiones.find((s) => s.idSesion == sesionSeleccionadaId);
 
   actualizarEntradas(sesionSeleccionada);
-
-  sessionStorage.setItem(
-    "sesionSeleccionada",
-    JSON.stringify(sesionSeleccionada),
-  );
 
   inputCantidad.disabled = false;
 }
@@ -179,6 +169,7 @@ function setSesion(event) {
 function addListenersSesiones() {
   document.querySelectorAll("input[name='sesion']").forEach((input) => {
     input.addEventListener("change", setSesion); // event desde aqui
+    input.addEventListener("change", actualizarPrecio); // event desde aqui
   });
 }
 
@@ -201,12 +192,7 @@ function verificarCantidad(cantidad, maximo) {
   }
 }
 
-let precioCalculado = 0.0;
-let descuentoAplicado = 0.0;
-let cantidadEntradas = 0;
-
 function actualizarPrecio() {
-  const sesion = JSON.parse(sessionStorage.getItem("sesionSeleccionada"));
   const cantidad = parseInt(inputCantidad.value);
   const maximo = parseInt(inputCantidad.max);
 
@@ -216,16 +202,12 @@ function actualizarPrecio() {
 
   const { precio, descuentoCalculado } = calcularPrecioYDescuento(
     cantidad,
-    sesion.precio,
+    sesionSeleccionada.precio,
   );
   console.log("Precio calculado:", precio);
 
   if (cantidadValida) {
     precioTotal.innerHTML = `Total a pagar: ${precio.toFixed(2)}€ <span id="descuento"></span>`;
-
-    precioCalculado = precio;
-    cantidadEntradas = cantidad;
-    descuentoAplicado = descuentoCalculado;
 
     // Mostrar descuento aplicado
     const descuento = document.getElementById("descuento");
@@ -239,20 +221,6 @@ function actualizarPrecio() {
   } else {
     precioTotal.innerHTML = `Total a pagar: 0.00€ <span id="descuento"></span>`;
 
-    precioCalculado = 0.0;
-    descuentoAplicado = 0.0;
-    cantidadEntradas = 0;
-
     btnPagar.disabled = true;
   }
 }
-
-// Evento para comprar
-document.addEventListener("click", (e) => {
-  if (e.target.id === "btnPagar") {
-    sessionStorage.setItem("precioTotal", precioCalculado.toFixed(2));
-    sessionStorage.setItem("descuentoAplicado", descuentoAplicado);
-    sessionStorage.setItem("cantidadEntradas", cantidadEntradas);
-    window.location.href = "compra.html";
-  }
-});

@@ -16,14 +16,14 @@
     <div class="compra">
       <h2>Compra de entradas</h2>
 
-      <form id="form-sesion">
-        <!-- Selección de fecha -->
-        <div class="section-radio">
-          <h3>Selecciona fecha:</h3>
+      <!-- Selección de fecha -->
+      <div class="section-radio">
+        <h3>Selecciona fecha:</h3>
 
-          <div class="radio-wrapper" id="selectFecha"></div>
-        </div>
+        <div class="radio-wrapper" id="selectFecha"></div>
+      </div>
 
+      <form id="form-sesion" action="/compra.html" method="get">
         <div class="section-radio">
           <h3>Selecciona hora:</h3>
 
@@ -35,6 +35,7 @@
           <input
             type="number"
             id="cantidad"
+            name="cantidad"
             min="0"
             max="100"
             value="0"
@@ -42,11 +43,11 @@
           />
           <span id="mensaje-error"></span>
         </div>
+
+        <p id="precioTotal"></p>
+
+        <button type="submit" id="btnPagar" disabled>Pagar</button>
       </form>
-
-      <p id="precioTotal"></p>
-
-      <button id="btnPagar" disabled>Pagar</button>
     </div>
   </body>
 </html>
