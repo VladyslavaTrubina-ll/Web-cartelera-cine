@@ -1,6 +1,7 @@
 // login.js
 import { clientes } from "./db.js";
-sessionStorage.setItem("clientes", JSON.stringify(clientes));
+
+var clientesStorage = JSON.parse(localStorage.getItem("clientes")) || clientes;
 
 const formLogin = document.getElementById("formLogin");
 const mensajeLogin = document.getElementById("mensajeLogin");
@@ -12,7 +13,7 @@ formLogin.addEventListener("submit", (e) => {
   const password = document.getElementById("passwordLogin").value;
 
   // Buscar cliente por email
-  const clienteEncontrado = clientes.find((c) => c.email === email);
+  const clienteEncontrado = clientesStorage.find((c) => c.email === email);
 
   if (!clienteEncontrado) {
     mensajeLogin.textContent = "El email no está registrado";

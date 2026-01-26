@@ -1,6 +1,9 @@
 import { peliculas, sesiones, salas } from "./db.js";
 import { calcularPrecioYDescuento } from "./main.js";
 
+// Prefer localStorage sessions if they exist so spectators stay in sync after compras
+const sesionesStorage = JSON.parse(localStorage.getItem("sesiones")) || sesiones;
+
 const contenedor = document.getElementById("info-pelicula");
 const selectFecha = document.getElementById("selectFecha");
 const selectSesion = document.getElementById("selectSesion");
@@ -55,7 +58,7 @@ if (!pelicula) {
     `;
 }
 // Filtrar sesiones de esa película
-const sesionesPelicula = sesiones.filter(
+const sesionesPelicula = sesionesStorage.filter(
   (x) => x.idPelicula == pelicula.idPelicula,
 );
 
@@ -159,7 +162,7 @@ function setSesion(event) {
   sesionSeleccionadaId = event.target.value;
   console.log("Sesion seleccionada:", sesionSeleccionadaId);
 
-  sesionSeleccionada = sesiones.find((s) => s.idSesion == sesionSeleccionadaId);
+  sesionSeleccionada = sesionesStorage.find((s) => s.idSesion == sesionSeleccionadaId);
 
   actualizarEntradas(sesionSeleccionada);
 

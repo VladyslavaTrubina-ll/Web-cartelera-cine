@@ -4,6 +4,8 @@
 
 import { clientes } from "./db.js";
 
+var clientesStorage = JSON.parse(localStorage.getItem("clientes")) || clientes;
+
 const form = document.getElementById("formRegistroCliente");
 const mensaje = document.getElementById("mensaje");
 
@@ -39,7 +41,7 @@ if (form) {
     }
 
     // Validar email repetido
-    const emailExiste = clientes.some((c) => c.email === email);
+    const emailExiste = clientesStorage.some((c) => c.email === email);
     if (emailExiste) {
       mensaje.textContent =
         "El correo electrónico ya está registrado. Redirigiendo al login...";
@@ -65,10 +67,10 @@ if (form) {
       password,
     };
 
-    clientes.push(nuevoCliente);
+    clientesStorage.push(nuevoCliente);
 
-    // Guardar en sessionStorage
-    sessionStorage.setItem("clientes", JSON.stringify(clientes));
+    // Guardar en localStorage
+    localStorage.setItem("clientes", JSON.stringify(clientesStorage));
 
     mensaje.textContent =
       "Cliente registrado correctamente. Redirigiendo al login...";
