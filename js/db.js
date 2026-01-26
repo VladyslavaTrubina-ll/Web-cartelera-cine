@@ -77,7 +77,7 @@ export const salas = [
 // -----------------------------
 // SESIONES
 // -----------------------------
-const sesionesBase = [
+var sesionesBase = [
   {
     idSesion: 10,
     fecha: "2025-03-15",
@@ -85,7 +85,7 @@ const sesionesBase = [
     horaFin: "20:50",
     idSala: 1,
     idPelicula: 1,
-    precio: 8.5,
+    precio: 10.5,
     espectadores: 45,
   },
   {
@@ -180,39 +180,43 @@ const sesionesBase = [
   },
 ];
 
-export const sesiones = sesionesBase;
+export var sesiones = sesionesBase;
 
 // -----------------------------
 // ENTRADAS
 // idEntrada, idSesion, precioEntrada (precioTotal / numEntradas)
 //
 // -----------------------------
-const entradasBase = [
+var entradasBase = [
   {
     idEntrada: 1,
     idSesion: 1,
+    idCliente: 1,
     precioEntrada: 17.0,
   },
-  { idEntrada: 2, idSesion: 2, precioEntrada: 7.5 },
+  { idEntrada: 2, idSesion: 2, idCliente: 1, precioEntrada: 7.5 },
   {
     idEntrada: 3,
     idSesion: 3,
+    idCliente: 1,
     precioEntrada: 27.0,
   },
   {
     idEntrada: 4,
     idSesion: 4,
+    idCliente: 1,
     precioEntrada: 16.0,
   },
   {
     idEntrada: 5,
     idSesion: 5,
+    idCliente: 1,
     precioEntrada: 26.0,
   },
-  { idEntrada: 6, idSesion: 6, precioEntrada: 7.8 },
+  { idEntrada: 6, idSesion: 6, idCliente: 1, precioEntrada: 7.8 },
 ];
 
-export const entradas = entradasBase;
+export var entradas = entradasBase;
 
 // -----------------------------
 // COMPRAS
@@ -271,7 +275,7 @@ export const compras = comprasBase;
 // -----------------------------
 // CLIENTES
 // -----------------------------
-const clientesBase = [
+var clientesBase = [
   {
     idCliente: 1,
     dni: "12345678A",
@@ -282,4 +286,4 @@ const clientesBase = [
   },
 ];
 
-export const clientes = clientesBase;
+export var clientes = clientesBase;
