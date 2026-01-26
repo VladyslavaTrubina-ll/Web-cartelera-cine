@@ -27,6 +27,12 @@ let params = new URLSearchParams(document.location.search);
 let sesionSeleccionadaId = params.get("sesion");
 let cantidad = parseInt(params.get("cantidad"));
 
+// Validar que los parámetros existan
+if (!sesionSeleccionadaId || !cantidad) {
+  alert("Error: Parámetros faltantes en la URL");
+  window.location.href = "cartelera.html";
+}
+
 // Evento para manejar "Enter" en inputPago
 // preventir form submit y unfocus al hacer Enter
 inputPago.addEventListener("keydown", logKey);
@@ -42,6 +48,20 @@ function logKey(e) {
 /*Mostrar información sobre la compra */
 
 var sesion = sesionesStorage.find((s) => s.idSesion == sesionSeleccionadaId);
+
+// Si no se encuentra la sesión, puede ser que el localStorage esté desactualizado.
+if (!sesion) {
+  // Re-sincronizar con la base de datos en memoria (db.js)
+  sesionesStorage = sesiones;
+  localStorage.setItem("sesiones", JSON.stringify(sesionesStorage));
+  sesion = sesionesStorage.find((s) => s.idSesion == sesionSeleccionadaId);
+}
+
+// Validar que la sesión exista
+if (!sesion) {
+  alert("Error: Sesión no encontrada");
+  window.location.href = "cartelera.html";
+}
 
 const peliculaSeleccionada = peliculas.find(
   (p) => p.idPelicula == sesion.idPelicula,
@@ -120,12 +140,10 @@ document.getElementById("btnPagar").addEventListener("click", () => {
   const entradasIds = guardarEntradas();
 
   //guardar factura (compra)
-
   const compraId = guardarCompra(entradasIds);
 
   // guardar idCompra -> anadir a payload de POST
   inputCompraId.setAttribute("value", compraId);
-
   console.log("Compra realizada:", compraId);
 
   formPago.submit();
