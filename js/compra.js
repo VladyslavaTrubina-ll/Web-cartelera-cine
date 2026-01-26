@@ -1,156 +1,179 @@
 import { peliculas, sesiones, salas, entradas, compras } from "./db.js";
+import { calcularPrecioYDescuento } from "./main.js";
 
-const infoPelicula = document.getElementById("infoPelicula");
-const selectFecha = document.getElementById("selectFecha");
-const selectHora = document.getElementById("selectHora");
+// Load sesiones, entradas y compras from localStorage if available
+// if not, use the ones from db.js
+var sesionesStorage = JSON.parse(localStorage.getItem("sesiones")) || sesiones;
+var entradasStorage = JSON.parse(localStorage.getItem("entradas")) || entradas;
+var comprasStorage = JSON.parse(localStorage.getItem("compras")) || compras;
+
+const peliculaNombre = document.getElementById("pelicula-nombre");
+const sesionFecha = document.getElementById("sesion-fecha");
+const sesionHoraInicio = document.getElementById("sesion-horaInicio");
+const sesionHoraFinal = document.getElementById("sesion-horaFinal");
+const sesionSala = document.getElementById("sesion-sala");
+const precioUnitario = document.getElementById("precioUnitario");
+const cantidadEntradas = document.getElementById("cantidadEntradas");
+const descuentoAplicado = document.getElementById("descuentoAplicado");
+const precioTotal = document.getElementById("precioTotal");
+
+const inputPago = document.getElementById("importe");
+const btnPagar = document.getElementById("btnPagar");
 const mensajeCompra = document.getElementById("mensajeCompra");
-const inputCantidad = document.getElementById("cantidad");
-const precioTotalTexto = document.getElementById("precioTotal");
 
-// Recuperar película seleccionada
-const idPelicula = sessionStorage.getItem("peliculaSeleccionada");
-const pelicula = peliculas.find((p) => p.idPelicula == idPelicula);
+const usuario = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
 
-infoPelicula.innerHTML = `
-    <h3>${pelicula.titulo}</h3>
-    
-`;
+let params = new URLSearchParams(document.location.search);
+let sesionSeleccionadaId = params.get("sesion");
+let cantidad = parseInt(params.get("cantidad"));
 
-// Filtrar sesiones de esa película
-const sesionesPelicula = sesiones.filter((s) => s.idPelicula == idPelicula);
-
-// Rellenar fechas
-const fechasUnicas = [...new Set(sesionesPelicula.map((s) => s.fecha))];
-
-fechasUnicas.forEach((fecha) => {
-  const option = document.createElement("option");
-  option.value = fecha;
-  option.textContent = fecha;
-  selectFecha.appendChild(option);
-});
-
-// Cuando cambia la fecha → rellenar horas
-selectFecha.addEventListener("change", () => {
-  const fechaSeleccionada = selectFecha.value;
-  selectHora.innerHTML = "";
-
-  const horas = sesionesPelicula.filter((s) => s.fecha === fechaSeleccionada);
-
-  horas.forEach((s) => {
-    const option = document.createElement("option");
-    option.value = s.idSesion;
-    option.textContent = s.horaInicio;
-    selectHora.appendChild(option);
-  });
-
-  actualizarPrecio();
-});
-
-// Disparar una vez para cargar horas iniciales
-selectFecha.value = fechasUnicas[0];
-selectFecha.dispatchEvent(new Event("change"));
-
-// Actualizar precio cuando cambia hora o cantidad
-selectHora.addEventListener("change", actualizarPrecio);
-inputCantidad.addEventListener("input", actualizarPrecio);
-
-// Función para calcular el total
-function actualizarPrecio() {
-  const idSesion = selectHora.value;
-  const cantidad = parseInt(inputCantidad.value);
-
-  if (!idSesion || cantidad <= 0) {
-    precioTotalTexto.textContent = "";
-    return;
+// Evento para manejar "Enter" en inputPago
+// preventir form submit y unfocus al hacer Enter
+inputPago.addEventListener("keydown", logKey);
+function logKey(e) {
+  if (e.code === "Enter") {
+    e.preventDefault();
+    if (inputPago.value >= 0 || !isNaN(inputPago.value)) {
+      inputPago.blur();
+    }
   }
-
-  const sesion = sesiones.find((s) => s.idSesion == idSesion);
-  const total = cantidad * sesion.precio;
-
-  precioTotalTexto.textContent = `Total a pagar: ${total.toFixed(2)} €`;
 }
 
+/*Mostrar información sobre la compra */
+
+var sesion = sesionesStorage.find((s) => s.idSesion == sesionSeleccionadaId);
+
+const peliculaSeleccionada = peliculas.find(
+  (p) => p.idPelicula == sesion.idPelicula,
+);
+peliculaNombre.textContent = peliculaSeleccionada.titulo;
+
+sesionFecha.textContent = sesion.fecha;
+sesionHoraInicio.textContent = sesion.horaInicio;
+sesionHoraFinal.textContent = sesion.horaFin;
+
+const salaNombre = salas.find((s) => s.idSala == sesion.idSala).nombre;
+sesionSala.textContent = salaNombre;
+
+// Info entrada
+
+precioUnitario.textContent = sesion.precio.toFixed(2);
+
+cantidadEntradas.textContent = cantidad;
+
+const { precio: precioTotalValue, descuentoCalculado: descuento } =
+  calcularPrecioYDescuento(cantidad, sesion.precio);
+descuentoAplicado.textContent = (descuento * 100).toFixed(0);
+
+precioTotal.textContent = precioTotalValue.toFixed(2);
+
+// Pago
+let cambio = 0.0;
+
+inputPago.addEventListener("change", verificarDinero);
+inputPago.addEventListener("input", verificarDinero);
+
+function verificarDinero() {
+  const dinero = parseFloat(inputPago.value);
+  cambio = dinero - precioTotalValue;
+  if (dinero <= 0 || isNaN(dinero)) {
+    mensajeCompra.textContent = "La cantidad debe ser mayor que 0";
+    mensajeCompra.style.color = "red";
+    btnPagar.disabled = true;
+  } else if (dinero < precioTotalValue) {
+    mensajeCompra.textContent = "Se faltan " + (-cambio).toFixed(2) + " euros";
+    mensajeCompra.style.color = "red";
+    btnPagar.disabled = true;
+  } else {
+    mensajeCompra.textContent = "Su cambio es " + cambio.toFixed(2) + " euros";
+    mensajeCompra.style.color = "green";
+    btnPagar.disabled = false;
+  }
+
+  inputCambio.setAttribute("value", cambio.toFixed(2));
+}
+
+const formPago = document.getElementById("form-pago");
+
+const inputCambio = document.createElement("input");
+inputCambio.setAttribute("name", "cambio");
+inputCambio.setAttribute("type", "hidden");
+formPago.appendChild(inputCambio);
+
+const inputCompraId = document.createElement("input");
+inputCompraId.setAttribute("name", "idCompra");
+inputCompraId.setAttribute("type", "hidden");
+formPago.appendChild(inputCompraId);
+
 // Evento de compra
-document.getElementById("btnComprar").addEventListener("click", () => {
-  const usuario = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
+document.getElementById("btnPagar").addEventListener("click", () => {
   if (!usuario) {
     alert("Debes iniciar sesión para comprar entradas");
     window.location.href = "index.html";
     return;
   }
 
-  const idSesion = selectHora.value;
-  const cantidad = parseInt(inputCantidad.value);
-  const pago = parseFloat(document.getElementById("pago").value);
+  // actualizar espectadores en DB
+  sesion.espectadores += cantidad;
+  localStorage.setItem("sesiones", JSON.stringify(sesionesStorage));
+  //guardar entradas en db
+  const entradasIds = guardarEntradas();
 
-  const sesion = sesiones.find((s) => s.idSesion == idSesion);
-  const sala = salas.find((sa) => sa.idSala == sesion.idSala);
+  //guardar factura (compra)
 
-  const aforoDisponible = sala.numeroSillas - sesion.espectadores;
+  const compraId = guardarCompra(entradasIds);
 
-  if (cantidad > aforoDisponible) {
-    mensajeCompra.textContent = "No hay suficientes asientos disponibles";
-    mensajeCompra.style.color = "red";
-    return;
-  }
+  // guardar idCompra -> anadir a payload de POST
+  inputCompraId.setAttribute("value", compraId);
 
-  const precioTotal = cantidad * sesion.precio;
+  console.log("Compra realizada:", compraId);
 
-  if (isNaN(pago) || pago < precioTotal) {
-    mensajeCompra.textContent = "El pago es insuficiente";
-    mensajeCompra.style.color = "red";
-    return;
-  }
+  formPago.submit();
+});
 
-  const cambio = pago - precioTotal;
-
+function guardarEntradas() {
   // Crear entrada
-  const nuevaEntrada = {
-    idEntrada: entradas.length + 1,
-    idSesion: sesion.idSesion,
-    idCliente: usuario.idCliente,
-    cantidadPersonas: cantidad,
-    precio: precioTotal,
-    descuento: 0,
-  };
+  const precioEntrada = (precioTotalValue / cantidad).toFixed(2);
 
-  entradas.push(nuevaEntrada);
-  sessionStorage.setItem("entradas", JSON.stringify(entradas));
+  let entradasIds = [];
+
+  for (let i = 0; i < cantidad; i++) {
+    const idEntrada = entradasStorage.length + 1;
+
+    const nuevaEntrada = {
+      idEntrada: idEntrada,
+      idSesion: sesion.idSesion,
+      idCliente: usuario.idCliente,
+      precioEntrada: parseFloat(precioEntrada),
+    };
+
+    entradasStorage.push(nuevaEntrada);
+    entradasIds.push(idEntrada);
+
+    localStorage.setItem("entradas", JSON.stringify(entradasStorage));
+  }
+
+  console.log(entradasStorage);
+  return entradasIds;
+}
+
+function guardarCompra(entradasIds) {
+  // Crear compra
+  const idCompra = comprasStorage.length + 1;
 
   // Crear compra
   const nuevaCompra = {
-    idCompra: compras.length + 1,
-    entradas: [nuevaEntrada.idEntrada],
+    idCompra: idCompra,
+    entradas: entradasIds,
     idCliente: usuario.idCliente,
     fecha: new Date().toISOString().split("T")[0],
     hora: new Date().toLocaleTimeString(),
-    precioTotal: precioTotal,
-    descuentoAplicado: 0,
+    precioTotal: precioTotalValue,
+    descuentoAplicado: descuento,
   };
 
-  compras.push(nuevaCompra);
-  sessionStorage.setItem("compras", JSON.stringify(compras));
+  comprasStorage.push(nuevaCompra);
+  localStorage.setItem("compras", JSON.stringify(comprasStorage));
 
-  // Actualizar aforo
-  sesion.espectadores += cantidad;
-  sessionStorage.setItem("sesiones", JSON.stringify(sesiones));
-
-  // Mostrar ticket completo
-  mensajeCompra.innerHTML = `
-        <strong>Compra realizada con éxito</strong><br><br>
-        Película: ${pelicula.titulo}<br>
-        Sala: ${sala.nombre}<br>
-        Fecha: ${sesion.fecha}<br>
-        Hora: ${sesion.horaInicio}<br>
-        Entradas: ${cantidad}<br>
-        Total: ${precioTotal.toFixed(2)} €<br>
-        Pago: ${pago.toFixed(2)} €<br>
-        Cambio: ${cambio.toFixed(2)} €<br>
-    `;
-  mensajeCompra.style.color = "green";
-});
-// Esperar 100 segundos y cerrar sesión + redirigir
-setTimeout(() => {
-  sessionStorage.removeItem("usuarioLogueado");
-  window.location.href = "index.html";
-}, 100000);
+  return idCompra;
+}
