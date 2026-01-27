@@ -1,4 +1,6 @@
 import { peliculas } from "./db.js";
+
+sessionStorage.removeItem("peliculaSeleccionada");
 //Esto evita que alguien entra a cartelera sin login
 const usuario = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
 

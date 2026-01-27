@@ -1,3 +1,8 @@
+/* toggle reset button */
+:root {
+  --show-reset: inline-block; /* Cambia a 'none' para ocultar el botón */
+}
+
 /*eliminar estylos default*/
 body,
 html {
@@ -26,6 +31,26 @@ header {
   text-decoration: none;
 }
 
+#reset-button {
+  margin-left: 15px;
+  padding: 5px 10px;
+  font-size: 0.9em;
+  border: none;
+  border-radius: 5px;
+  background-color: #555;
+  color: white;
+  cursor: pointer;
+  display: var(--show-reset);
+}
+
+#reset-button:hover {
+  background-color: #777;
+}
+
+#reset-button:active {
+  transform: scale(0.95);
+}
+
 .user-info {
   display: flex;
   flex-direction: row;
@@ -42,7 +67,7 @@ nuevo cliente*/
   border-radius: 8px;
 }
 
-/*.form-cliente label {
+.form-cliente label {
   display: block;
   margin-top: 10px;
 }
@@ -67,7 +92,7 @@ nuevo cliente*/
 #mensaje {
   margin-top: 10px;
   font-weight: bold;
-}*/
+}
 
 /*Hasta aqui llega de registro de nuevo cliente en index.html*/
 
@@ -92,6 +117,10 @@ nuevo cliente*/
   border-radius: 10px;
   margin-bottom: 10px;
 }
+
+/* PELICULA*/
+
+
 
 /* Form compra*/
 
@@ -228,14 +257,17 @@ nuevo cliente*/
   box-sizing: border-box;
 }
 
-.compra-realizada {
+.compra-realizada,
+.receipt {
   background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  margin-bottom: 30px;
   box-shadow: 1px 3px 8px 3px rgba(0, 0, 0, 0.2);
   width: 90%;
   max-width: 400px;
+}
+
+.compra-realizada {
+  padding: 30px;
+  border-radius: 10px 10px 20px 20px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -318,10 +350,7 @@ nuevo cliente*/
   padding: 25px 30px;
   text-align: left;
   min-height: 200px;
-  width: 88%;
-  background-color: #fff;
   border-radius: 10px 10px 20px 20px;
-  box-shadow: 1px 3px 8px 3px rgba(0, 0, 0, 0.2);
 }
 
 .ticket-system .receipt .airliner-logo {
@@ -382,7 +411,9 @@ nuevo cliente*/
 .ticket-system .receipt.qr-code::before {
   content: "";
   background: linear-gradient(to right, #fff 50%, #3f32e5 50%);
-  background-size: 22px 4px, 100% 4px;
+  background-size:
+    22px 4px,
+    100% 4px;
   height: 4px;
   width: 90%;
   display: block;

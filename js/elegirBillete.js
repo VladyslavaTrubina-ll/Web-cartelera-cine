@@ -1,8 +1,21 @@
 import { peliculas, sesiones, salas } from "./db.js";
 import { calcularPrecioYDescuento } from "./main.js";
 
+const usuario = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
+
+if (!usuario) {
+  window.location.href = "index.html";
+}
+
+const id = sessionStorage.getItem("peliculaSeleccionada");
+
+if (!id) {
+  window.location.href = "cartelera.html";
+}
+
 // Prefer localStorage sessions if they exist so spectators stay in sync after compras
-const sesionesStorage = JSON.parse(localStorage.getItem("sesiones")) || sesiones;
+const sesionesStorage =
+  JSON.parse(localStorage.getItem("sesiones")) || sesiones;
 
 const contenedor = document.getElementById("info-pelicula");
 const selectFecha = document.getElementById("selectFecha");
@@ -38,8 +51,6 @@ function limpiar() {
 
 limpiar();
 
-// Recuperar la película seleccionada
-const id = sessionStorage.getItem("peliculaSeleccionada");
 const pelicula = peliculas.find((p) => p.idPelicula == id);
 
 if (!pelicula) {
@@ -162,7 +173,9 @@ function setSesion(event) {
   sesionSeleccionadaId = event.target.value;
   console.log("Sesion seleccionada:", sesionSeleccionadaId);
 
-  sesionSeleccionada = sesionesStorage.find((s) => s.idSesion == sesionSeleccionadaId);
+  sesionSeleccionada = sesionesStorage.find(
+    (s) => s.idSesion == sesionSeleccionadaId,
+  );
 
   actualizarEntradas(sesionSeleccionada);
 

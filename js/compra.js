@@ -1,6 +1,11 @@
 import { peliculas, sesiones, salas, entradas, compras } from "./db.js";
 import { calcularPrecioYDescuento } from "./main.js";
 
+const usuario = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
+if (!usuario) {
+  window.location.href = "index.html";
+}
+
 // Load sesiones, entradas y compras from localStorage if available
 // if not, use the ones from db.js
 var sesionesStorage = JSON.parse(localStorage.getItem("sesiones")) || sesiones;
@@ -21,15 +26,13 @@ const inputPago = document.getElementById("importe");
 const btnPagar = document.getElementById("btnPagar");
 const mensajeCompra = document.getElementById("mensajeCompra");
 
-const usuario = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
-
 let params = new URLSearchParams(document.location.search);
 let sesionSeleccionadaId = params.get("sesion");
 let cantidad = parseInt(params.get("cantidad"));
 
 // Validar que los parámetros existan
 if (!sesionSeleccionadaId || !cantidad) {
-  alert("Error: Parámetros faltantes en la URL");
+  // alert("Error: Parámetros faltantes en la URL");
   window.location.href = "cartelera.html";
 }
 
@@ -59,7 +62,7 @@ if (!sesion) {
 
 // Validar que la sesión exista
 if (!sesion) {
-  alert("Error: Sesión no encontrada");
+  // alert("Error: Sesión no encontrada");
   window.location.href = "cartelera.html";
 }
 
@@ -127,12 +130,6 @@ formPago.appendChild(inputCompraId);
 
 // Evento de compra
 document.getElementById("btnPagar").addEventListener("click", () => {
-  if (!usuario) {
-    alert("Debes iniciar sesión para comprar entradas");
-    window.location.href = "index.html";
-    return;
-  }
-
   // actualizar espectadores en DB
   sesion.espectadores += cantidad;
   localStorage.setItem("sesiones", JSON.stringify(sesionesStorage));
