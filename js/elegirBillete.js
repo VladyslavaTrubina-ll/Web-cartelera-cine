@@ -58,8 +58,7 @@ if (!pelicula) {
 } else {
   contenedor.innerHTML = `
         <h2>${pelicula.titulo}</h2>
-        <img src="${pelicula.foto}" alt="${pelicula.titulo}" 
-        style="width:250px; border-radius:10px; margin-bottom:15px;">
+        <img src="${pelicula.foto}" alt="${pelicula.titulo}"/>
  
         <p><strong>Género:</strong> ${pelicula.genero}</p>
         <p><strong>Duración:</strong> ${pelicula.duracion} min</p>
