@@ -12,6 +12,10 @@
 }
 
 /*eliminar estylos default*/
+body {
+  min-width: 300px;
+}
+
 body,
 html,
 main {
@@ -67,8 +71,6 @@ header {
   flex-direction: row;
   gap: 10px;
 }
-
-
 
 /*esta parte son los css del formulario de registro para 
 nuevo cliente*/
@@ -142,6 +144,7 @@ main.pelicula {
   width: 50%;
   /* border: 1px solid red; */
   display: grid;
+  min-width: 250px;
 }
 
 #info-pelicula h2 {
@@ -159,6 +162,19 @@ main.pelicula {
 div.compra {
   width: 50%;
   /* border: 1px solid green; */
+}
+
+@media (max-width: 850px) {
+  main.pelicula {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  #info-pelicula,
+  div.compra {
+    width: 100%;
+  }
 }
 
 /* Form compra*/
