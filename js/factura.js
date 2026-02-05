@@ -55,10 +55,10 @@ sesionFecha.textContent = sesion?.fecha;
 sesionHoraInicio.textContent = sesion?.horaInicio;
 sesionHoraFinal.textContent = sesion?.horaFin;
 sesionSala.textContent = sala?.nombre;
-precioUnitario.textContent = precioUnitarioCompra;
+precioUnitario.textContent = precioUnitarioCompra + "€";
 cantidadEntradas.textContent = cantidadEntradasCompra;
-descuentoAplicado.textContent = (compra.descuentoAplicado * 100).toFixed(0);
-precioTotal.textContent = compra.precioTotal.toFixed(2);
+descuentoAplicado.textContent = (compra.descuentoAplicado * 100).toFixed(0) + "%";
+precioTotal.textContent = compra.precioTotal.toFixed(2) + "€";
 
 //gvargar cillas compradas
 const entradasLista = document.getElementById("factura-entradas-lista");

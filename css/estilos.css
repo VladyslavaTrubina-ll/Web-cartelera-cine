@@ -1,14 +1,29 @@
 /* toggle reset button */
 :root {
   --show-reset: inline-block; /* Cambia a 'none' para ocultar el botón */
-  --accent-color: #3f32e5;
-  --bg-color: #f0f0f0;
+  /*--accent-color: #3f32e5;*/
+  --accent-color: #2d66f0;
+
+  /*--bg-color: #9bb1bc;*/
+  --bg-color: #9fb8c9;
+
   --primary-color: #333333;
   --secondary-color: #555555;
   --green-color: #177f22;
   --red-color: #cd1919;
   --text-color-dark: black;
   --text-color-light: #e4e4e4;
+  /*--comara-color: #948468;*/
+  --comra-color: #f3f9ff;
+
+  --color-dentro-compra: #1939c8;
+  --info-text-color: #3a87ba;
+
+  /*--color-background: linear-gradient(135deg, #f0f2ff 0%, #e8ebff 100%);*/
+  --color-background: linear-gradient(135deg, #f1f8ff 0%, #e6f0ff 100%);
+
+  /* --color-gradient: linear-gradient(135deg, #6c6d76 0%, #f0f2ff 100%);*/
+  --color-gradient: linear-gradient(135deg, #edf6ff 0%, #dfeaff 100%);
 }
 
 /*eliminar estylos default*/
@@ -69,7 +84,22 @@ header {
 .user-info {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 10pxн;
+}
+
+/* Header responsive */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .user-info {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
 }
 
 /*esta parte son los css del formulario de registro para 
@@ -89,7 +119,7 @@ nuevo cliente*/
 
 .form-cliente input {
   width: 100%;
-  padding: 6px;
+  padding: 10px;
   margin-top: 4px;
 }
 
@@ -112,27 +142,120 @@ nuevo cliente*/
 /*Hasta aqui llega de registro de nuevo cliente en index.html*/
 
 /*Esta parte va para la parte de la CARTELERA*/
+body h1 {
+  text-align: center;
+  margin: 20px 0;
+  color: var(--text-color-dark);
+}
+
 .cartelera {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .pelicula-card {
-  width: 200px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  text-align: center;
-  background: #fff;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  aspect-ratio: 2/3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pelicula-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 
 .pelicula-card img.poster {
   width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.7);
 }
 
+.pelicula-card h3 {
+  position: absolute;
+  bottom: 50px;
+  left: 15px;
+  right: 15px;
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+  z-index: 2;
+  line-height: 1.2;
+}
+
+.pelicula-card p {
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+  right: 15px;
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+
+/* Градиент снизу для лучшей читаемости текста */
+.pelicula-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  z-index: 1;
+  filter: brightness(0.7);
+  pointer-events: none;
+}
+
+/*@media (max-width: 900px) {
+  .cartelera {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+  }
+
+  .pelicula-card h3 {
+    font-size: 1.1rem;
+    bottom: 40px;
+  }
+
+  .pelicula-card p {
+    font-size: 0.85rem;
+  }
+}*/
+
+@media (max-width: 950px) {
+  .cartelera {
+    margin: 0 10px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 15px;
+  }
+
+  .pelicula-card h3 {
+    font-size: 1rem;
+    bottom: 35px;
+  }
+
+  .pelicula-card p {
+    font-size: 0.8rem;
+    bottom: 15px;
+  }
+}
 /* PELICULA*/
 
 main.pelicula {
@@ -142,7 +265,6 @@ main.pelicula {
 
 #info-pelicula {
   width: 50%;
-  /* border: 1px solid red; */
   display: grid;
   min-width: 250px;
 }
@@ -161,7 +283,6 @@ main.pelicula {
 
 div.compra {
   width: 50%;
-  /* border: 1px solid green; */
 }
 
 @media (max-width: 850px) {
@@ -346,51 +467,289 @@ div.compra {
   opacity: 0.6;
 }
 
-/*aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
 * {
   box-sizing: border-box;
 }
 
+/* COMPRA PAGE STYLES */
+.info-compra {
+  background: var(--comra-color);
+  max-width: 550px;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  color: var(--text-color-dark);
+}
+
+.info-compra > p:first-child {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-color-dark);
+  margin: 0 0 25px 0;
+  text-align: center;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.info-compra > p:first-child span {
+  display: block;
+  color: var(--accent-color);
+  font-size: 1.6rem;
+  margin-top: 10px;
+}
+
+.info-compra .sesion-info,
+.info-compra .entrada-info {
+  background: var(--color-gradient);
+  border: 2px solid #e8ebff;
+  border-left: 5px solid var(--accent-color);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  transition: all 0.3s ease;
+}
+
+.info-compra .sesion-info:hover,
+.info-compra .entrada-info:hover {
+  box-shadow: 0 6px 16px rgba(63, 50, 229, 0.15);
+  transform: translateY(-3px);
+}
+
+.info-compra .sesion-info p,
+.info-compra .entrada-info p {
+  margin: 10px 0;
+  font-size: 1.05rem;
+  color: var(--text-color-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-compra .sesion-info p span,
+.info-compra .entrada-info p span {
+  font-weight: 700;
+  color: var(--accent-color);
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+.info-compra > p:last-of-type {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-color-dark);
+  text-align: center;
+  margin: 30px 0 20px 0;
+  padding: 20px;
+  background: var(--color-background);
+  border-radius: 12px;
+}
+
+.info-compra > p:last-of-type span {
+  color: var(--accent-color);
+  font-size: 1.8rem;
+}
+
+.pago {
+  max-width: 550px;
+  margin: 30px auto;
+  padding: 30px;
+  background: var(--comra-color);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.pago form {
+  text-align: center;
+}
+
+.pago label {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color-dark);
+  margin-bottom: 15px;
+}
+
+.pago input[type="number"] {
+  width: 100%;
+  max-width: 300px;
+  padding: 14px 20px;
+  font-size: 1.2rem;
+  border: 2px solid #e8ebf5;
+  border-radius: 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+  background-color: #f9fafb;
+  margin-bottom: 20px;
+}
+
+.pago input[type="number"]:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  background-color: white;
+  box-shadow: 0 0 0 4px rgba(63, 50, 229, 0.1);
+}
+
+.pago #btnPagar {
+  width: 100%;
+  max-width: 400px;
+  padding: 16px 40px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-color) 0%, #2c1fa5 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 16px rgba(63, 50, 229, 0.3);
+  margin: 10px auto;
+  display: block;
+}
+
+.pago #btnPagar:hover:enabled {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(63, 50, 229, 0.4);
+}
+
+.pago #btnPagar:active:enabled {
+  transform: translateY(-1px);
+}
+
+.pago #btnPagar:disabled {
+  background: linear-gradient(135deg, #ccc 0%, #aaa 100%);
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+#mensajeCompra {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  min-height: 50px;
+}
+
+/*pelicula eligir billete*/
 .compra-realizada,
 .receipt {
-  background-color: white;
+  background-color: var(--comra-color);
   box-shadow: 1px 3px 8px 3px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 400px;
+  width: 110%;
+
+  max-width: 650px;
 }
 
 .compra-realizada {
-  padding: 30px;
-  border-radius: 10px 10px 20px 20px;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 35px;
 }
 
-.compra-realizada h2 {
+.receipt {
+  max-width: 455px;
+  padding: 25px 30px;
+  margin: 0 0 0 35px;
+}
+
+.compra-realizada {
+  padding: 35px;
+  border-radius: 16px;
+  margin: 25px auto 0;
+  box-sizing: border-box;
+}
+
+.compra-realizada h2:first-child {
   margin-top: 0;
-  color: #3f32e5;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  text-align: center;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--accent-color);
 }
 
 .info-factura {
   text-align: left;
 }
 
-.info-factura p {
-  margin: 10px 0;
-  font-size: 1em;
+.info-factura > h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-color-dark);
+  margin: 20px 0 15px 0;
 }
 
-.info-factura span {
-  font-weight: bold;
-  color: #3f32e5;
+.info-factura > h2 span {
+  color: var(--accent-color);
+  display: block;
+  margin-top: 8px;
+  font-size: 1.5rem;
 }
 
-.sesion-info,
-.entrada-info {
+.info-factura > p {
   margin: 15px 0;
-  padding: 10px;
-  background-color: #f5f5f5;
-  border-radius: 5px;
+  font-size: 1.05rem;
+  color: var(--text-color-dark);
+}
+
+.info-factura > p span {
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.info-factura .sesion-info,
+.info-factura .entrada-info {
+  background: var(--color-gradient);
+  border: 2px solid #e8ebff;
+  border-left: 5px solid var(--accent-color);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
+  transition: all 0.3s ease;
+}
+
+.info-factura .sesion-info:hover,
+.info-factura .entrada-info:hover {
+  box-shadow: 0 6px 16px rgba(63, 50, 229, 0.15);
+  transform: translateY(-3px);
+}
+
+.info-factura .sesion-info p,
+.info-factura .entrada-info p {
+  margin: 10px 0;
+  font-size: 1.05rem;
+  color: var(--text-color-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-factura .sesion-info p span,
+.info-factura .entrada-info p span {
+  font-weight: 700;
+  color: var(--accent-color);
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+.info-factura > p:last-of-type {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-color-dark);
+  text-align: center;
+  margin: 30px 0 20px 0;
+  padding: 20px;
+  background: var(--color-background);
+  border-radius: 12px;
+}
+
+.info-factura > p:last-of-type span {
+  color: var(--accent-color);
+  font-size: 1.8rem;
 }
 
 .ticket-system {
@@ -445,6 +804,7 @@ div.compra {
   text-align: left;
   min-height: 200px;
   border-radius: 10px 10px 20px 20px;
+  box-sizing: border-box;
 }
 
 .ticket-system .receipt .airliner-logo {
@@ -497,9 +857,10 @@ div.compra {
   height: 110px;
   min-height: unset;
   position: relative;
-  border-radius: 20px 20px 10px 10px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .ticket-system .receipt.qr-code::before {
@@ -557,30 +918,280 @@ div.compra {
 
 /* Botón Volver */
 .btn-volver {
-  background-color: #3f32e5;
+  width: 110%;
+  max-width: 550px;
+  padding: 16px 40px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-color) 0%, #2c1fa5 100%);
   color: white;
   border: none;
-  padding: 12px 30px;
-  font-size: 1em;
-  border-radius: 5px;
+  border-radius: 12px;
   cursor: pointer;
-  margin-top: 20px;
   transition: all 0.3s ease;
-  font-weight: bold;
+  box-shadow: 0 6px 16px rgba(63, 50, 229, 0.3);
+  margin: 20px auto;
+  display: block;
+  box-sizing: border-box;
 }
 
 .btn-volver:hover {
-  background-color: #2c1fa5;
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(63, 50, 229, 0.4);
 }
 
 .btn-volver:active {
-  transform: scale(0.98);
+  transform: translateY(-1px);
 }
 
 .btn-volver:disabled {
-  background-color: #ccc;
+  background: linear-gradient(135deg, #ccc 0%, #aaa 100%);
   cursor: not-allowed;
   opacity: 0.6;
+  box-shadow: none;
+}
+
+/* FOOTER STYLES */
+.site-footer {
+  background-color: var(--primary-color);
+  color: var(--text-color-light);
+  padding: 40px 20px 20px 20px;
+  margin-top: 60px;
+  border-top: 2px solid var(--accent-color);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto 30px auto;
+}
+
+.footer-section h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  margin: 0 0 15px 0;
+}
+
+.footer-section p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(228, 228, 228, 0.9);
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section ul li {
+  font-size: 0.95rem;
+  margin: 8px 0;
+  color: rgba(228, 228, 228, 0.9);
+}
+
+.footer-section ul li a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(228, 228, 228, 0.8);
+}
+
+@media (max-width: 600px) {
+  .site-footer {
+    padding: 30px 15px 15px 15px;
+    margin-top: 40px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .footer-section h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* RESPONSIVE MEDIA QUERIES */
+
+/* Info compra responsive */
+@media (max-width: 600px) {
+  .info-compra {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  .info-compra > p:first-child {
+    font-size: 1.2rem;
+    margin: 0 0 20px 0;
+  }
+
+  .info-compra > p:first-child span {
+    font-size: 1.4rem;
+    margin-top: 8px;
+  }
+
+  .info-compra .sesion-info,
+  .info-compra .entrada-info {
+    padding: 15px;
+    margin: 15px 0;
+  }
+
+  .info-compra > p:last-of-type {
+    font-size: 1.3rem;
+    padding: 15px;
+  }
+}
+
+/* Pago responsive */
+@media (max-width: 600px) {
+  .pago {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+  }
+
+  .pago label {
+    font-size: 1rem;
+  }
+
+  .pago input[type="number"] {
+    max-width: 100%;
+  }
+
+  .pago #btnPagar {
+    max-width: 100%;
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+}
+
+/* Compra realizada / receipt responsive */
+@media (max-width: 600px) {
+  .compra-realizada,
+  .receipt {
+    width: 95%;
+    max-width: 100%;
+  }
+
+  .compra-realizada {
+    padding: 20px;
+    margin: 20px auto 0;
+  }
+
+  .compra-realizada h2:first-child {
+    font-size: 1.5rem;
+  }
+
+  .receipt {
+    padding: 15px 20px;
+  }
+}
+
+/* Info factura responsive */
+@media (max-width: 600px) {
+  .info-factura > h2 {
+    font-size: 1.2rem;
+  }
+
+  .info-factura > h2 span {
+    font-size: 1.3rem;
+  }
+
+  .info-factura .sesion-info,
+  .info-factura .entrada-info {
+    padding: 15px;
+    margin: 15px 0;
+  }
+
+  .info-factura > p:last-of-type {
+    font-size: 1.3rem;
+    padding: 15px;
+  }
+}
+
+/* Ticket system responsive */
+@media (max-width: 600px) {
+  .ticket-system {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .ticket-system .receipt.qr-code {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .ticket-system .receipt.qr-code .qr {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+  }
+
+  .ticket-system .receipt.qr-code .description {
+    margin-left: 0;
+  }
+}
+
+/* Btn volver responsive */
+@media (max-width: 600px) {
+  .btn-volver {
+    width: 95%;
+    max-width: 100%;
+    padding: 12px 20px;
+    font-size: 1rem;
+    margin: 15px auto;
+  }
+}
+
+/* Radio wrapper responsive */
+@media (max-width: 600px) {
+  .radio-wrapper label {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .radio-wrapper label .inputAndLeftText {
+    width: 100%;
+  }
+
+  .radio-wrapper label .precio {
+    text-align: right;
+  }
+}
+
+/* Form cliente responsive */
+@media (max-width: 600px) {
+  .form-cliente {
+    width: 90%;
+    margin: 15px auto;
+    padding: 15px;
+  }
+
+  .form-cliente button {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
 }

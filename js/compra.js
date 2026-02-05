@@ -32,7 +32,6 @@ let cantidad = parseInt(params.get("cantidad"));
 
 // Validar que los parámetros existan
 if (!sesionSeleccionadaId || !cantidad) {
-  // alert("Error: Parámetros faltantes en la URL");
   window.location.href = "cartelera.html";
 }
 
@@ -80,15 +79,15 @@ sesionSala.textContent = salaNombre;
 
 // Info entrada
 
-precioUnitario.textContent = sesion.precio.toFixed(2);
+precioUnitario.textContent = sesion.precio.toFixed(2) + "€";
 
 cantidadEntradas.textContent = cantidad;
 
 const { precio: precioTotalValue, descuentoCalculado: descuento } =
   calcularPrecioYDescuento(cantidad, sesion.precio);
-descuentoAplicado.textContent = (descuento * 100).toFixed(0);
+descuentoAplicado.textContent = (descuento * 100).toFixed(0) + "%";
 
-precioTotal.textContent = precioTotalValue.toFixed(2);
+precioTotal.textContent = precioTotalValue.toFixed(2) + "€";
 
 // Pago
 let cambio = 0.0;

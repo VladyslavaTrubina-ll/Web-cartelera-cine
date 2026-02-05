@@ -1,7 +1,7 @@
 import { peliculas } from "./db.js";
 
 sessionStorage.removeItem("peliculaSeleccionada");
-//Esto evita que alguien entra a cartelera sin login
+//Esto verifica que alguien entra a cartelera sin login
 const usuario = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
 
 if (!usuario) {
@@ -17,17 +17,17 @@ peliculas.forEach((pelicula) => {
   card.classList.add("pelicula-card");
 
   card.innerHTML = `
-    <img src="${pelicula.foto}" alt="${pelicula.titulo}" class="poster">
+    <img src="${pelicula.foto}" alt="${pelicula.titulo}" class="poster" data-id="${pelicula.idPelicula}" style="cursor: pointer;">
      <h3>${pelicula.titulo}</h3>
-      <p>${pelicula.genero}</p> 
-      <button data-id="${pelicula.idPelicula}">Ver detalles</button> `;
+      <p>${pelicula.genero}</p>`;
 
+  // Agregar atributo data-id para identificar la película
   listaPeliculas.appendChild(card);
 });
 
 // Detectar clic en "Ver detalles"
 listaPeliculas.addEventListener("click", (e) => {
-  if (e.target.tagName === "BUTTON") {
+  if (e.target.tagName === "IMG") {
     const id = e.target.getAttribute("data-id");
 
     // Guardar la película seleccionada
