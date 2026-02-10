@@ -41,7 +41,8 @@ inputPago.addEventListener("keydown", logKey);
 function logKey(e) {
   if (e.code === "Enter") {
     e.preventDefault();
-    if (inputPago.value >= 0 || !isNaN(inputPago.value)) {
+    const valor = parseFloat(inputPago.value);
+    if (!isNaN(valor) && valor >= 0) {
       inputPago.blur();
     }
   }

@@ -1,49 +1,54 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <link rel="stylesheet" href="css/login.css" />
-    <link rel="stylesheet" href="css/estilos.css" />
-    <script type="module" src="js/header.js"></script>
-    <script type="module" src="js/futer.js"></script>
-  </head>
-  <body>
-    <header id="header"></header>
 
-    <div class="contenedor">
-      <!-- SLIDER -->
-      <div class="slider">
-        <div class="slides">
-          <img src="img/interestellarhoriz.jpg" alt="Imagen 1" />
-          <img src="img/lalalandHor.jpg" alt="Imagen 2" />
-          <img src="img/avatarHor.jpg" alt="Imagen 3" />
-          <img src="img/cocoHor.jpg" alt="Imagen 4" />
-        </div>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="css/login.css" />
+  <link rel="stylesheet" href="css/estilos.css" />
+  <script type="module" src="js/header.js"></script>
+  <script type="module" src="js/futer.js"></script>
+</head>
 
-      <!-- FORMULARIO -->
-      <div class="login-box">
-        <h2>Iniciar sesión</h2>
+<body>
+  <header id="header"></header>
 
-        <form id="formLogin" class="form-cliente">
-          <label>Email</label>
-          <input type="email" id="emailLogin" required />
-
-          <label>Contraseña</label>
-          <input type="password" id="passwordLogin" required />
-
-          <button type="submit">Entrar</button>
-
-          <p id="mensajeLogin"></p>
-          <p>
-            ¿No tienes cuenta? <a href="nuevoCliente.html">Crear una cuenta</a>
-          </p>
-        </form>
+  <div class="contenedor">
+    <!-- SLIDER -->
+    <div class="slider">
+      <div class="slides">
+        <img src="img/interestellarhoriz.jpg" alt="Imagen 1" />
+        <img src="img/lalalandHor.jpg" alt="Imagen 2" />
+        <img src="img/avatarHor.jpg" alt="Imagen 3" />
+        <img src="img/cocoHor.jpg" alt="Imagen 4" />
+        <img src="img/interestellarhoriz.jpg" alt="Imagen 5" />
+        <img src="img/lalalandHor.jpg" alt="Imagen 6" />
       </div>
     </div>
 
-    <script type="module" src="js/login.js"></script>
-  </body>
+    <!-- FORMULARIO -->
+    <div class="login-box">
+      <h2>Iniciar sesión</h2>
+
+      <form id="formLogin" class="form-cliente">
+        <label>Email</label>
+        <input type="email" id="emailLogin" required />
+
+        <label>Contraseña</label>
+        <input type="password" id="passwordLogin" required />
+
+        <button type="submit">Entrar</button>
+
+        <p id="mensajeLogin"></p>
+        <p>
+          ¿No tienes cuenta? <a href="nuevoCliente.html">Crear una cuenta</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="js/login.js"></script>
+</body>
+
 </html>

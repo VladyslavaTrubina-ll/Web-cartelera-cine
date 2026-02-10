@@ -20,12 +20,23 @@ if (!idCompra) {
 }
 
 var compra = comprasStorage.find((c) => c.idCompra == idCompra);
+if (!compra || !Array.isArray(compra.entradas) || compra.entradas.length === 0) {
+  window.location.href = "cartelera.html";
+}
+
 const primeraEntrada = entradasStorage.find((e) =>
   compra.entradas.includes(e.idEntrada),
 );
+if (!primeraEntrada) {
+  window.location.href = "cartelera.html";
+}
+
 const sesion = sesionesStorage.find(
   (s) => s.idSesion == primeraEntrada.idSesion,
 );
+if (!sesion) {
+  window.location.href = "cartelera.html";
+}
 const pelicula = peliculas.find((p) => p.idPelicula == sesion?.idPelicula);
 const sala = salas.find((s) => s.idSala == sesion?.idSala);
 
@@ -78,9 +89,11 @@ if (entradasLista && compra?.entradas?.length) {
 
 // Botón volver a películas
 const btnVolver = document.getElementById("btnVolver");
-btnVolver.addEventListener("click", () => {
-  window.location.href = "cartelera.html";
-});
+if (btnVolver) {
+  btnVolver.addEventListener("click", () => {
+    window.location.href = "cartelera.html";
+  });
+}
 
 setTimeout(() => {
   sessionStorage.removeItem("usuarioLogueado");

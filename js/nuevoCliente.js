@@ -27,7 +27,7 @@ if (form) {
     // --------------------------------------
 
     // Validar DNI repetido
-    const dniExiste = clientes.some((c) => c.dni === dni);
+    const dniExiste = clientesStorage.some((c) => c.dni === dni);
     if (dniExiste) {
       mensaje.textContent =
         "El DNI ya está registrado. Redirigiendo al login...";
@@ -59,7 +59,7 @@ if (form) {
     // --------------------------------------
 
     const nuevoCliente = {
-      idCliente: clientes.length + 1,
+      idCliente: clientesStorage.length + 1,
       dni,
       nombre,
       apellidos,
@@ -77,7 +77,7 @@ if (form) {
     mensaje.style.color = "green";
 
     console.log("Cliente añadido:", nuevoCliente);
-    console.log("Lista actualizada de clientes:", clientes);
+    console.log("Lista actualizada de clientes:", clientesStorage);
 
     // Limpiar formulario
     form.reset();
