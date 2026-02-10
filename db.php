@@ -1,8 +1,8 @@
 <?php
 // Conexion a la base de datos cine_daw 
-$servidor = "HOST_AQUI";
-$usuario = "USUARIO_AQUI";
-$pass = "PASSWORD_AQUI";
+$servidor = "10.5.12.221";
+$usuario = "root";
+$pass = "";
 $bd = "cine_daw";
 
 $conn = new mysqli($servidor, $usuario, $pass, $bd);
