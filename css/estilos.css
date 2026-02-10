@@ -1,6 +1,7 @@
 /* toggle reset button */
 :root {
-  --show-reset: inline-block; /* Cambia a 'none' para ocultar el botón */
+  --show-reset: inline-block;
+  /* Cambia a 'none' para ocultar el botón */
   /*--accent-color: #3f32e5;*/
   --accent-color: #2d66f0;
 
@@ -179,7 +180,7 @@ body h1 {
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: brightness(0.7);
+  filter: brightness(0.9);
 }
 
 .pelicula-card h3 {
@@ -256,6 +257,7 @@ body h1 {
     bottom: 15px;
   }
 }
+
 /* PELICULA*/
 
 main.pelicula {
@@ -482,7 +484,7 @@ div.compra {
   color: var(--text-color-dark);
 }
 
-.info-compra > p:first-child {
+.info-compra>p:first-child {
   font-size: 1.4rem;
   font-weight: 600;
   color: var(--text-color-dark);
@@ -492,7 +494,7 @@ div.compra {
   border-bottom: 2px solid var(--accent-color);
 }
 
-.info-compra > p:first-child span {
+.info-compra>p:first-child span {
   display: block;
   color: var(--accent-color);
   font-size: 1.6rem;
@@ -534,7 +536,7 @@ div.compra {
   white-space: nowrap;
 }
 
-.info-compra > p:last-of-type {
+.info-compra>p:last-of-type {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-color-dark);
@@ -545,7 +547,7 @@ div.compra {
   border-radius: 12px;
 }
 
-.info-compra > p:last-of-type span {
+.info-compra>p:last-of-type span {
   color: var(--accent-color);
   font-size: 1.8rem;
 }
@@ -676,27 +678,27 @@ div.compra {
   text-align: left;
 }
 
-.info-factura > h2 {
+.info-factura>h2 {
   font-size: 1.4rem;
   font-weight: 600;
   color: var(--text-color-dark);
   margin: 20px 0 15px 0;
 }
 
-.info-factura > h2 span {
+.info-factura>h2 span {
   color: var(--accent-color);
   display: block;
   margin-top: 8px;
   font-size: 1.5rem;
 }
 
-.info-factura > p {
+.info-factura>p {
   margin: 15px 0;
   font-size: 1.05rem;
   color: var(--text-color-dark);
 }
 
-.info-factura > p span {
+.info-factura>p span {
   font-weight: 700;
   color: var(--accent-color);
 }
@@ -736,7 +738,7 @@ div.compra {
   white-space: nowrap;
 }
 
-.info-factura > p:last-of-type {
+.info-factura>p:last-of-type {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-color-dark);
@@ -747,7 +749,7 @@ div.compra {
   border-radius: 12px;
 }
 
-.info-factura > p:last-of-type span {
+.info-factura>p:last-of-type span {
   color: var(--accent-color);
   font-size: 1.8rem;
 }
@@ -1043,12 +1045,12 @@ div.compra {
     padding: 15px;
   }
 
-  .info-compra > p:first-child {
+  .info-compra>p:first-child {
     font-size: 1.2rem;
     margin: 0 0 20px 0;
   }
 
-  .info-compra > p:first-child span {
+  .info-compra>p:first-child span {
     font-size: 1.4rem;
     margin-top: 8px;
   }
@@ -1059,7 +1061,7 @@ div.compra {
     margin: 15px 0;
   }
 
-  .info-compra > p:last-of-type {
+  .info-compra>p:last-of-type {
     font-size: 1.3rem;
     padding: 15px;
   }
@@ -1090,6 +1092,7 @@ div.compra {
 
 /* Compra realizada / receipt responsive */
 @media (max-width: 600px) {
+
   .compra-realizada,
   .receipt {
     width: 95%;
@@ -1112,11 +1115,11 @@ div.compra {
 
 /* Info factura responsive */
 @media (max-width: 600px) {
-  .info-factura > h2 {
+  .info-factura>h2 {
     font-size: 1.2rem;
   }
 
-  .info-factura > h2 span {
+  .info-factura>h2 span {
     font-size: 1.3rem;
   }
 
@@ -1126,7 +1129,7 @@ div.compra {
     margin: 15px 0;
   }
 
-  .info-factura > p:last-of-type {
+  .info-factura>p:last-of-type {
     font-size: 1.3rem;
     padding: 15px;
   }
