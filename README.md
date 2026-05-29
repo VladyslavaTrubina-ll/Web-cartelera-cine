@@ -1,59 +1,82 @@
 # Reto2-html
 
-Estructura de index.html
+# Web Cartelera Cine
 
-```
-Reto2-html/
-│
-├── index.html                 # Página principal (registro)
-├── resumen.html               # Página de resumen (si existe)
-├── seleccion.html             # Página de selección de películas (si existe)
-├── README.md                  # Documentación del proyecto
-│
+## Опис проєкту
+
+**Web Cartelera Cine** — це сучасний вебсайт для вибору фільмів, оформлення покупки та перегляду чека. Проєкт створений у приємному темному стилі, щоб передати атмосферу кінотеатру та зробити користування сайтом зручним і зрозумілим.
+
+Користувач може:
+
+- зареєструватися або увійти в систему;
+- переглянути список фільмів;
+- обрати сеанс і місця;
+- оформити оплату;
+- отримати чек покупки.
+
+## Основні сторінки
+
+- **index.html** — стартова сторінка та форма входу/реєстрації.
+- **cartelera.html** — сторінка з добіркою фільмів.
+- **pelicula.html** — детальна інформація про фільм.
+- **compra.html** — оформлення покупки.
+- **factura.html** — сторінка з чеком.
+- **nuevoCliente.html** — реєстрація нового клієнта.
+
+## Головні переваги
+
+- інтуїтивний інтерфейс;
+- стильне оформлення в кінотематиці;
+- логічний шлях користувача від вибору фільму до оплати;
+- адаптована структура для подальшого розвитку проєкту.
+
+## Скриншоти
+
+### Логін
+
+![Логін](FotoREADME/Логин.png)
+
+### Список фільмів
+
+![Список фільмів](FotoREADME/Список%20Фильмов.png)
+
+### Вибір сеансу
+
+![Вибір сеансу](FotoREADME/ВыборСеанса.png)
+
+### Оплата
+
+![Оплата](FotoREADME/Оплата.png)
+
+### Чек покупки
+
+![Чек покупки](FotoREADME/ЧекПокупки.png)
+
+## Структура проєкту
+
+```text
+Web-cartelera-cine/
+├── index.html
+├── cartelera.html
+├── compra.html
+├── factura.html
+├── nuevoCliente.html
+├── pelicula.html
+├── db.php
 ├── css/
-│   ├── estilos.css            # Estilos generales
-│   ├── responsive.css         # Estilos para móvil/tablet
-│   └── variables.css          # Variables CSS (colores, fuentes)
-│
 ├── js/
-│   ├── script.js              # Lógica principal (formulario, validación)
-│   ├── datos.js               # Base de datos (películas, usuarios)
-│   └── utilidades.js          # Funciones reutilizables
-│
 ├── img/
-│   ├── logo.png               # Logo principal
-│   ├── logo-footer.png        # Logo pie de página
-│   │
-│   ├── peliculas/             # Imágenes de películas
-│   │   ├── pelicula1.jpg
-│   │   ├── pelicula2.jpg
-│   │   ├── pelicula3.jpg
-│   │   └── pelicula4.jpg
-│   │
-│   ├── iconos/                # Iconos reutilizables
-│   │   ├── menu.svg
-│   │   ├── carrito.svg
-│   │   ├── perfil.svg
-│   │   ├── estrella.svg
-│   │   └── cerrar.svg
-│   │
-│   ├── fondo/                 # Fondos y texturas
-│   │   ├── fondo-principal.jpg
-│   │   └── patron.png
-│   │
-│   └── banners/               # Banners promocionales
-│       ├── banner1.jpg
-│       └── banner2.jpg
-│
-└── documentos/                # Archivos adicionales
-    ├── datos-usuarios.json    # Datos en JSON
-    └── notas.txt              # Notas de desarrollo
+├── vid/
+└── FotoREADME/
 ```
 
-Quitar error:
+## Технології
 
-```
-git config --global commit.gpgsign false
-git config --global --unset commit.gpgsing
-git config --list --show-origin --show-scope
-```
+- HTML5
+- CSS3
+- JavaScript
+- PHP
+
+## Примітка
+
+Усі зображення для цього README взяті з папки **FotoREADME** та використовуються для демонстрації основних екранів сайту.
