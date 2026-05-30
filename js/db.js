@@ -6,11 +6,11 @@ export const peliculas = [
     idPelicula: 1,
     titulo: "Interstellar",
     duracion: 169,
-    genero: "Ciencia ficción",
+    genero: "Science Fiction",
     precio: 8.5,
     foto: "img/interestellar.avif",
     sinopsis:
-      "Un grupo de astronautas viaja a través de un agujero de gusano para salvar a la humanidad.",
+      "A group of astronauts travels through a wormhole to save humanity.",
   },
   {
     idPelicula: 2,
@@ -20,37 +20,37 @@ export const peliculas = [
     precio: 7.5,
     foto: "img/lalaland.jpg",
     sinopsis:
-      "Una actriz y un pianista luchan por cumplir sus sueños en Los Ángeles mientras viven una historia de amor.",
+      "An actress and a pianist chase their dreams in Los Angeles while living a love story.",
   },
   {
     idPelicula: 3,
     titulo: "El Señor de los Anillos: La Comunidad del Anillo",
     duracion: 178,
-    genero: "Fantasía",
+    genero: "Fantasy",
     precio: 9.0,
     foto: "img/elSeñorAnillos.jpg",
     sinopsis:
-      "Frodo inicia un viaje épico para destruir un anillo que podría condenar a la Tierra Media.",
+      "Frodo begins an epic journey to destroy a ring that could doom Middle-earth.",
   },
   {
     idPelicula: 4,
     titulo: "Avatar",
     duracion: 162,
-    genero: "Ciencia ficción",
+    genero: "Science Fiction",
     precio: 8.0,
     foto: "img/avatar.jpg",
     sinopsis:
-      "Un exmarine se une a los Na'vi en el planeta Pandora mientras se debate entre dos mundos.",
+      "A former marine joins the Na'vi on Pandora while torn between two worlds.",
   },
   {
     idPelicula: 5,
     titulo: "Coco",
     duracion: 105,
-    genero: "Animación",
+    genero: "Animation",
     precio: 6.5,
     foto: "img/coco.webp",
     sinopsis:
-      "Miguel viaja al Mundo de los Muertos para descubrir la verdad sobre su familia y su pasión por la música.",
+      "Miguel travels to the Land of the Dead to discover the truth about his family and his passion for music.",
   },
   {
     idPelicula: 6,
@@ -60,18 +60,48 @@ export const peliculas = [
     precio: 7.8,
     foto: "img/joker.jpg",
     sinopsis:
-      "Arthur Fleck, un comediante fallido, desciende a la locura y se convierte en el Joker.",
+      "Arthur Fleck, a failed comedian, descends into madness and becomes the Joker.",
   },
 ];
 
 // Salas
 export const salas = [
-  { idSala: 1, nombre: "Sala Principal", numeroSillas: 150, sesiones: [10, 11, 12, 13, 14, 1, 2] },
-  { idSala: 2, nombre: "Sala Azul", numeroSillas: 100, sesiones: [20, 21, 22, 3, 32, 42] },
-  { idSala: 3, nombre: "Sala Roja", numeroSillas: 80, sesiones: [23, 30, 4, 41, 5, 62] },
-  { idSala: 4, nombre: "Sala VIP", numeroSillas: 40, sesiones: [6, 60, 61, 63] },
-  { idSala: 5, nombre: "Sala Junior", numeroSillas: 60, sesiones: [50, 51, 52, 53, 54] },
-  { idSala: 6, nombre: "Sala 3D", numeroSillas: 120, sesiones: [31, 33, 40, 43] },
+  {
+    idSala: 1,
+    nombre: "Main Hall",
+    numeroSillas: 150,
+    sesiones: [10, 11, 12, 13, 14, 1, 2],
+  },
+  {
+    idSala: 2,
+    nombre: "Blue Hall",
+    numeroSillas: 100,
+    sesiones: [20, 21, 22, 3, 32, 42],
+  },
+  {
+    idSala: 3,
+    nombre: "Red Hall",
+    numeroSillas: 80,
+    sesiones: [23, 30, 4, 41, 5, 62],
+  },
+  {
+    idSala: 4,
+    nombre: "VIP Hall",
+    numeroSillas: 40,
+    sesiones: [6, 60, 61, 63],
+  },
+  {
+    idSala: 5,
+    nombre: "Junior Hall",
+    numeroSillas: 60,
+    sesiones: [50, 51, 52, 53, 54],
+  },
+  {
+    idSala: 6,
+    nombre: "3D Hall",
+    numeroSillas: 120,
+    sesiones: [31, 33, 40, 43],
+  },
 ];
 
 // -----------------------------

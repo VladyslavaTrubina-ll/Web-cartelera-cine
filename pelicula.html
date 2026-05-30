@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Detalle de película</title>
+    <title>Movie Details</title>
     <link rel="stylesheet" href="css/estilos.css" />
     <script type="module" src="js/header.js"></script>
     <script type="module" src="js/pelicula.js"></script>
@@ -17,25 +17,25 @@
       <div id="info-pelicula"></div>
 
       <div class="compra">
-        <h2>Compra de entradas</h2>
+        <h2>Ticket purchase</h2>
 
-        <!-- Selección de fecha -->
+        <!-- Date selection -->
         <div class="section-radio">
-          <h3>Selecciona fecha:</h3>
+          <h3>Select date:</h3>
 
           <div class="radio-wrapper" id="selectFecha"></div>
         </div>
 
         <form id="form-sesion" action="/compra.html" method="get">
           <div class="section-radio">
-            <h3>Selecciona hora:</h3>
+            <h3>Select time:</h3>
 
             <div class="radio-wrapper" id="selectSesion"></div>
           </div>
 
           <div class="section-user-input">
             <div class="cantidad-entradas">
-              <label for="cantidad">Cantidad de entradas:</label>
+              <label for="cantidad">Number of tickets:</label>
               <input
                 type="number"
                 id="cantidad"
@@ -50,7 +50,7 @@
 
             <p id="precioTotal"></p>
 
-            <button type="submit" id="btnPagar" disabled>Pagar</button>
+            <button type="submit" id="btnPagar" disabled>Pay</button>
           </div>
         </form>
       </div>

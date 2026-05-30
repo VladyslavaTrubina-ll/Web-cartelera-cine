@@ -8,14 +8,14 @@ let userInfo = ``;
 
 if (usuario) {
   userInfo = `
-    <p>Hola, <span id="username">${usuario.nombre} ${usuario.apellidos}</span>!</p>
-    <button id="logout-button">Cerrar sesión</button>
+  <p>Hello, <span id="username">${usuario.nombre} ${usuario.apellidos}</span>!</p>
+  <button id="logout-button">Log out</button>
     `;
 }
 
 header.innerHTML = `
     <div class="logo"><a href="index.html">Cine Elorrieta</a> <button id="reset-button">Reset</button></div>
-    <div class="page-link"><a href="cartelera.html">Películas</a></div>
+  <div class="page-link"><a href="cartelera.html">Movies</a></div>
     <div class="user-info">
         ${userInfo}
     </div>
@@ -33,7 +33,7 @@ if (usuario) {
 const resetButton = document.getElementById("reset-button");
 resetButton.addEventListener("click", () => {
   resetStorage();
-  console.log("LocalStorage reseteado a valores desde db.js.");
+  console.log("LocalStorage reset to values from db.js.");
 });
 
 function limpiarSesionStorage() {

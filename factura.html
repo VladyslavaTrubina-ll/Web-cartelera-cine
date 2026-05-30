@@ -1,39 +1,15 @@
 <!doctype html>
-<html lang="factura">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Factura</title>
+    <title>Invoice</title>
     <link rel="stylesheet" href="css/estilos.css" />
     <script type="module" src="js/header.js"></script>
     <script type="module" src="js/factura.js"></script>
   </head>
 
-  <!--
-<body>
-  <header id="header"></header>
-  <div class="compra-realizada">
-    <h2>Gracias por su compra!</h2>
-    <div class="info-factura">
-      <h2>Compra realizada: <span id="user-nomAp"></span></h2>
-      <p>Pelicula: <span id="factura-pelicula-nombre"></span></p>
-
-      <div class="sesion-info">
-        <p>Fecha: <span id="factura-fecha"></span></p>
-        <p>Hora inicio: <span id="factura-horaInicio"></span></p>
-        <p>Hora final: <span id="factura-horaFinal"></span></p>
-        <p>Sala: <span id="factura-sala"></span></p>
-      </div>
-      <div class="entrada-info">
-        <p>Precio por entrada: <span id="factura-precioUnitario"></span>€</p>
-        <p>Cantidad entradas: <span id="factura-cantidadEntradas"></span></p>
-        <p>Descuento aplicado: <span id="factura-descuentoAplicado"></span>%</p>
-      </div>
-      <p>Precio total: <span id="factura-precioTotal"></span>€</p>
-    </div>
-  </div> -->
-  <!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
-  <!-- INSPO:  https://www.behance.net/gallery/69583099/Mobile-Flights-App-Concept -->
+  <!-- Inspired by: https://www.behance.net/gallery/69583099/Mobile-Flights-App-Concept -->
 
   <body>
     <header id="header"></header>
@@ -41,65 +17,33 @@
     <main class="ticket-system">
       <div class="top">
         <div class="compra-realizada">
-          <h2>Gracias por su compra!</h2>
+          <h2>Thank you for your purchase!</h2>
           <div class="info-factura">
-            <h2>Compra realizada: <span id="user-nomAp"></span></h2>
-            <p>Pelicula: <span id="factura-pelicula-nombre"></span></p>
+            <h2>Purchase completed: <span id="user-nomAp"></span></h2>
+            <p>Movie: <span id="factura-pelicula-nombre"></span></p>
 
             <div class="sesion-info">
-              <p>Fecha: <span id="factura-fecha"></span></p>
-              <p>Hora inicio: <span id="factura-horaInicio"></span></p>
-              <p>Hora final: <span id="factura-horaFinal"></span></p>
-              <p>Sala: <span id="factura-sala"></span></p>
+              <p>Date: <span id="factura-fecha"></span></p>
+              <p>Start time: <span id="factura-horaInicio"></span></p>
+              <p>End time: <span id="factura-horaFinal"></span></p>
+              <p>Hall: <span id="factura-sala"></span></p>
               <script type="module" src="js/futer.js"></script>
             </div>
 
             <div class="entrada-info">
+              <p>Price per ticket: <span id="factura-precioUnitario"></span></p>
               <p>
-                Precio por entrada: <span id="factura-precioUnitario"></span>
+                Number of tickets: <span id="factura-cantidadEntradas"></span>
               </p>
               <p>
-                Cantidad entradas: <span id="factura-cantidadEntradas"></span>
-              </p>
-              <p>
-                Descuento aplicado:
+                Discount applied:
                 <span id="factura-descuentoAplicado"></span>
               </p>
             </div>
 
-            <p>Precio total: <span id="factura-precioTotal"></span></p>
+            <p>Total price: <span id="factura-precioTotal"></span></p>
           </div>
         </div>
-
-        <!-- <main class="ticket-system">
-        <div class="top">
-          <h3 class="title"><span id="ticket-nomAp"></span></h3>
-          <div class="printer"></div>
-        </div> -->
-
-        <!-- <div class="receipts-wrapper">
-      <div class="receipts">
-        <div class="receipt">
-          <div class="route"></div>
-          <div class="details">
-            <div class="item">
-              <span>Película</span>
-              <h3 id="ticket-pelicula"></h3>
-            </div>
-            <div class="item">
-              <span>Fecha</span>
-              <h3 id="ticket-fecha"></h3>
-            </div>
-            <div class="item">
-              <span>Hora</span>
-              <h3 id="ticket-hora"></h3>
-            </div>
-            <div class="item">
-              <span>Sala</span>
-              <h3 id="ticket-sala"></h3>
-            </div>
-          </div>
-        </div> -->
 
         <div class="receipt qr-code">
           <svg
@@ -113,11 +57,11 @@
           </svg>
           <div class="description">
             <h2 id="ticket-pelicula-qr"></h2>
-            <small>Mostrar código QR cuando se solicite</small>
+            <small>Show this QR code when requested</small>
           </div>
         </div>
       </div>
-      <button class="btn-volver" id="btnVolver">Volver a Películas</button>
+      <button class="btn-volver" id="btnVolver">Back to Movies</button>
     </main>
   </body>
 </html>

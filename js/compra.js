@@ -100,15 +100,17 @@ function verificarDinero() {
   const dinero = parseFloat(inputPago.value);
   cambio = dinero - precioTotalValue;
   if (dinero <= 0 || isNaN(dinero)) {
-    mensajeCompra.textContent = "La cantidad debe ser mayor que 0";
+    mensajeCompra.textContent = "Amount must be greater than 0";
     mensajeCompra.style.color = "red";
     btnPagar.disabled = true;
   } else if (dinero < precioTotalValue) {
-    mensajeCompra.textContent = "Se faltan " + (-cambio).toFixed(2) + " euros";
+    mensajeCompra.textContent =
+      "You are short by " + (-cambio).toFixed(2) + " euros";
     mensajeCompra.style.color = "red";
     btnPagar.disabled = true;
   } else {
-    mensajeCompra.textContent = "Su cambio es " + cambio.toFixed(2) + " euros";
+    mensajeCompra.textContent =
+      "Your change is " + cambio.toFixed(2) + " euros";
     mensajeCompra.style.color = "green";
     btnPagar.disabled = false;
   }

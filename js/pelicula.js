@@ -40,7 +40,7 @@ function logKey(e) {
 // limpiar sessionStorage
 
 function limpiar() {
-  selectSesion.innerHTML = "<p>Seleccione una fecha primero</p>";
+  selectSesion.innerHTML = "<p>Select a date first</p>";
 
   inputCantidad.value = 0;
   inputCantidad.disabled = true;
@@ -54,16 +54,16 @@ limpiar();
 const pelicula = peliculas.find((p) => p.idPelicula == id);
 
 if (!pelicula) {
-  contenedor.innerHTML = "<p>Error: película no encontrada</p>";
+  contenedor.innerHTML = "<p>Error: movie not found</p>";
 } else {
   contenedor.innerHTML = `
         <h2>${pelicula.titulo}</h2>
         <img src="${pelicula.foto}" alt="${pelicula.titulo}"/>
  
-        <p><strong>Género:</strong> ${pelicula.genero}</p>
-        <p><strong>Duración:</strong> ${pelicula.duracion} min</p>
-        <p><strong>Precio:</strong> ${pelicula.precio}</p>
-        <p><strong>Sinopsis:</strong> ${pelicula.sinopsis}</p>
+        <p><strong>Genre:</strong> ${pelicula.genero}</p>
+        <p><strong>Duration:</strong> ${pelicula.duracion} min</p>
+        <p><strong>Price:</strong> ${pelicula.precio}</p>
+        <p><strong>Synopsis:</strong> ${pelicula.sinopsis}</p>
         
     `;
 }
@@ -98,7 +98,7 @@ fechasUnicas.forEach((fecha) => {
               />
               <div>
                 <span class="fecha-sesion">${fecha}</span>
-                <span class="num-sesion">${numSesionesPorFecha[fecha]} sesiones</span>
+                <span class="num-sesion">${numSesionesPorFecha[fecha]} sessions</span>
               </div>
             </div>
   `;
@@ -153,8 +153,8 @@ function actualizarSesiones(fechaSeleccionada) {
                 value="${sesion.idSesion}"
               />
               <div>
-                <span class="hora-sesion">${sesion.horaInicio}, sala ${sesion.idSala}</span>
-                <span class="num-sillas">${aforoDisponible} sillas disponibles</span>
+                <span class="hora-sesion">${sesion.horaInicio}, hall ${sesion.idSala}</span>
+                <span class="num-sillas">${aforoDisponible} seats available</span>
               </div>
             </div>
             <span class="precio">${sesion.precio.toFixed(2)} €</span>
@@ -196,10 +196,10 @@ inputCantidad.addEventListener("input", actualizarPrecio);
 
 function verificarCantidad(cantidad, maximo) {
   if (cantidad <= 0 || isNaN(cantidad)) {
-    mensajeError.textContent = "La cantidad debe ser mayor que 0";
+    mensajeError.textContent = "Quantity must be greater than 0";
     return false;
   } else if (cantidad > maximo) {
-    mensajeError.textContent = "Solo " + maximo + " asientos disponibles";
+    mensajeError.textContent = "Only " + maximo + " seats available";
     return false;
   } else {
     mensajeError.textContent = "";
@@ -222,19 +222,19 @@ function actualizarPrecio() {
   console.log("Precio calculado:", precio);
 
   if (cantidadValida) {
-    precioTotal.innerHTML = `Total a pagar: ${precio.toFixed(2)}€ <span id="descuento"></span>`;
+    precioTotal.innerHTML = `Total to pay: ${precio.toFixed(2)}€ <span id="descuento"></span>`;
 
     // Mostrar descuento aplicado
     const descuento = document.getElementById("descuento");
 
     if (descuentoCalculado > 0) {
-      descuento.textContent = `(${(descuentoCalculado * 100).toFixed(0)}% de descuento aplicado)`;
+      descuento.textContent = `(${(descuentoCalculado * 100).toFixed(0)}% discount applied)`;
     } else {
       descuento.textContent = "";
     }
     btnPagar.disabled = false;
   } else {
-    precioTotal.innerHTML = `Total a pagar: 0.00€ <span id="descuento"></span>`;
+    precioTotal.innerHTML = `Total to pay: 0.00€ <span id="descuento"></span>`;
 
     btnPagar.disabled = true;
   }

@@ -16,14 +16,14 @@ formLogin.addEventListener("submit", (e) => {
   const clienteEncontrado = clientesStorage.find((c) => c.email === email);
 
   if (!clienteEncontrado) {
-    mensajeLogin.textContent = "El email no está registrado";
+    mensajeLogin.textContent = "Email is not registered";
     mensajeLogin.style.color = "red";
     return;
   }
 
   // Validar contraseña
   if (clienteEncontrado.password !== password) {
-    mensajeLogin.textContent = "Contraseña incorrecta";
+    mensajeLogin.textContent = "Incorrect password";
     mensajeLogin.style.color = "red";
     return;
   }
@@ -31,7 +31,7 @@ formLogin.addEventListener("submit", (e) => {
   // Guardar sesión del usuario
   sessionStorage.setItem("usuarioLogueado", JSON.stringify(clienteEncontrado));
 
-  mensajeLogin.textContent = "Login exitoso";
+  mensajeLogin.textContent = "Login successful";
   mensajeLogin.style.color = "green";
 
   // Redirigir después de 1 segundo

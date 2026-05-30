@@ -20,7 +20,11 @@ if (!idCompra) {
 }
 
 var compra = comprasStorage.find((c) => c.idCompra == idCompra);
-if (!compra || !Array.isArray(compra.entradas) || compra.entradas.length === 0) {
+if (
+  !compra ||
+  !Array.isArray(compra.entradas) ||
+  compra.entradas.length === 0
+) {
   window.location.href = "cartelera.html";
 }
 
@@ -68,7 +72,8 @@ sesionHoraFinal.textContent = sesion?.horaFin;
 sesionSala.textContent = sala?.nombre;
 precioUnitario.textContent = precioUnitarioCompra + "€";
 cantidadEntradas.textContent = cantidadEntradasCompra;
-descuentoAplicado.textContent = (compra.descuentoAplicado * 100).toFixed(0) + "%";
+descuentoAplicado.textContent =
+  (compra.descuentoAplicado * 100).toFixed(0) + "%";
 precioTotal.textContent = compra.precioTotal.toFixed(2) + "€";
 
 //gvargar cillas compradas
@@ -81,7 +86,7 @@ if (entradasLista && compra?.entradas?.length) {
     if (!entrada) return;
     const li = document.createElement("li");
     const precio = entrada.precioEntrada ?? precioUnitarioCompra;
-    li.textContent = `Entrada #${entrada.idEntrada} — Asiento: ${entrada.numSilla ?? "-"} — Precio: ${Number(precio).toFixed(2)}€`;
+    li.textContent = `Ticket #${entrada.idEntrada} — Seat: ${entrada.numSilla ?? "-"} — Price: ${Number(precio).toFixed(2)}€`;
     entradasLista.appendChild(li);
   });
 }

@@ -30,7 +30,7 @@ if (form) {
     const dniExiste = clientesStorage.some((c) => c.dni === dni);
     if (dniExiste) {
       mensaje.textContent =
-        "El DNI ya está registrado. Redirigiendo al login...";
+        "DNI is already registered. Redirecting to login...";
       mensaje.style.color = "red";
 
       setTimeout(() => {
@@ -44,7 +44,7 @@ if (form) {
     const emailExiste = clientesStorage.some((c) => c.email === email);
     if (emailExiste) {
       mensaje.textContent =
-        "El correo electrónico ya está registrado. Redirigiendo al login...";
+        "Email is already registered. Redirecting to login...";
       mensaje.style.color = "red";
 
       setTimeout(() => {
@@ -73,7 +73,7 @@ if (form) {
     localStorage.setItem("clientes", JSON.stringify(clientesStorage));
 
     mensaje.textContent =
-      "Cliente registrado correctamente. Redirigiendo al login...";
+      "Customer registered successfully. Redirecting to login...";
     mensaje.style.color = "green";
 
     console.log("Cliente añadido:", nuevoCliente);
@@ -84,7 +84,7 @@ if (form) {
 
     // Redirección al login
     setTimeout(() => {
-      console.log("Redirigiendo ahora...");
+      console.log("Redirecting now...");
       window.location.href = "index.html";
     }, 2000);
   });

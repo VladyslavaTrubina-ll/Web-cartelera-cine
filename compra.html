@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Compra de entradas</title>
+    <title>Ticket Purchase</title>
     <link rel="stylesheet" href="css/estilos.css" />
     <script type="module" src="js/header.js"></script>
     <script type="module" src="js/compra.js"></script>
@@ -13,31 +13,31 @@
     <header id="header"></header>
 
     <div class="info-compra">
-      <p>Has elegido: <span id="pelicula-nombre"></span></p>
+      <p>You selected: <span id="pelicula-nombre"></span></p>
 
       <div class="sesion-info">
-        <p>Fecha: <span id="sesion-fecha"></span></p>
-        <p>Hora inicio: <span id="sesion-horaInicio"></span></p>
-        <p>Hora final: <span id="sesion-horaFinal"></span></p>
-        <p>Sala: <span id="sesion-sala"></span></p>
+        <p>Date: <span id="sesion-fecha"></span></p>
+        <p>Start time: <span id="sesion-horaInicio"></span></p>
+        <p>End time: <span id="sesion-horaFinal"></span></p>
+        <p>Hall: <span id="sesion-sala"></span></p>
       </div>
       <div class="entrada-info">
-        <p>Precio por entrada: <span id="precioUnitario"></span></p>
-        <p>Cantidad entradas: <span id="cantidadEntradas"></span></p>
-        <p>Descuento aplicado: <span id="descuentoAplicado"></span></p>
+        <p>Price per ticket: <span id="precioUnitario"></span></p>
+        <p>Number of tickets: <span id="cantidadEntradas"></span></p>
+        <p>Discount applied: <span id="descuentoAplicado"></span></p>
       </div>
-      <p>Precio total: <span id="precioTotal"></span></p>
+      <p>Total price: <span id="precioTotal"></span></p>
     </div>
 
     <div class="pago">
       <!-- Pago -->
       <form id="form-pago" action="/factura.html" method="get">
-        <label for="importe">Introduce el importe a pagar (€):</label>
+        <label for="importe">Enter payment amount (€):</label>
         <input type="number" id="importe" min="0" step="0.01" name="importe" />
       </form>
 
       <!-- Botón de compra -->
-      <button id="btnPagar" disabled>Confirmar compra</button>
+      <button id="btnPagar" disabled>Confirm purchase</button>
     </div>
 
     <!-- Mensaje final -->
