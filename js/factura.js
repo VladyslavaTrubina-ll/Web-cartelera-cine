@@ -16,7 +16,7 @@ let idCompra = params.get("idCompra");
 
 // Validar que el parámetro exista
 if (!idCompra) {
-  window.location.href = "cartelera.html";
+  window.location.href = "moviePoster.html";
 }
 
 var compra = comprasStorage.find((c) => c.idCompra == idCompra);
@@ -25,21 +25,21 @@ if (
   !Array.isArray(compra.entradas) ||
   compra.entradas.length === 0
 ) {
-  window.location.href = "cartelera.html";
+  window.location.href = "moviePoster.html";
 }
 
 const primeraEntrada = entradasStorage.find((e) =>
   compra.entradas.includes(e.idEntrada),
 );
 if (!primeraEntrada) {
-  window.location.href = "cartelera.html";
+  window.location.href = "moviePoster.html";
 }
 
 const sesion = sesionesStorage.find(
   (s) => s.idSesion == primeraEntrada.idSesion,
 );
 if (!sesion) {
-  window.location.href = "cartelera.html";
+  window.location.href = "moviePoster.html";
 }
 const pelicula = peliculas.find((p) => p.idPelicula == sesion?.idPelicula);
 const sala = salas.find((s) => s.idSala == sesion?.idSala);
@@ -96,7 +96,7 @@ if (entradasLista && compra?.entradas?.length) {
 const btnVolver = document.getElementById("btnVolver");
 if (btnVolver) {
   btnVolver.addEventListener("click", () => {
-    window.location.href = "cartelera.html";
+    window.location.href = "moviePoster.html";
   });
 }
 

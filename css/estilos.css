@@ -85,7 +85,7 @@ header {
 .user-info {
   display: flex;
   flex-direction: row;
-  gap: 10pxн;
+  gap: 10px;
 }
 
 /* Header responsive */
@@ -142,14 +142,14 @@ nuevo cliente*/
 
 /*Hasta aqui llega de registro de nuevo cliente en index.html*/
 
-/*Esta parte va para la parte de la CARTELERA*/
+/*Esta parte va para la parte de la moviePoster.html*/
 body h1 {
   text-align: center;
   margin: 20px 0;
   color: var(--text-color-dark);
 }
 
-.cartelera {
+.moviePoster {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
@@ -223,26 +223,9 @@ body h1 {
   pointer-events: none;
 }
 
-/*@media (max-width: 900px) {
-  .cartelera {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 15px;
-  }
-
-  .pelicula-card h3 {
-    font-size: 1.1rem;
-    bottom: 40px;
-  }
-
-  .pelicula-card p {
-    font-size: 0.85rem;
-  }
-}*/
-
 @media (max-width: 950px) {
-  .cartelera {
+  .moviePoster {
     margin: 0 10px;
-    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     padding: 15px;
   }
@@ -257,6 +240,16 @@ body h1 {
     bottom: 15px;
   }
 }
+
+@media (max-width: 500px) {
+  .moviePoster {
+    grid-template-columns: 1fr; /* 1 колонка для мобильных */
+  }
+  .pelicula-card h3 {
+    font-size: 1.2rem; /* Немного увеличиваем текст обратно, так как места стало больше */
+  }
+}
+
 
 /* PELICULA*/
 

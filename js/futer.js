@@ -7,9 +7,9 @@ export function createFooter() {
       <div class="footer-section">
         <h3>Quick Links</h3>
         <ul>
-          <li><a href="cartelera.html">Now Showing</a></li>
+          <li><a href="moviePoster.html">Now Showing</a></li>
           <li><a href="index.html">Home</a></li>
-          <li><a href="nuevoCliente.html">Create Account</a></li>
+          <li><a href="registration.html">Create Account</a></li>
         </ul>
       </div>
       <div class="footer-section">

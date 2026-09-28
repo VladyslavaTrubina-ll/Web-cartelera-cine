@@ -10,7 +10,7 @@ if (!usuario) {
 const id = sessionStorage.getItem("peliculaSeleccionada");
 
 if (!id) {
-  window.location.href = "cartelera.html";
+  window.location.href = "moviePoster.html";
 }
 
 // Prefer localStorage sessions if they exist so spectators stay in sync after compras

@@ -15,7 +15,7 @@ if (usuario) {
 
 header.innerHTML = `
     <div class="logo"><a href="index.html">Cine Elorrieta</a> <button id="reset-button">Reset</button></div>
-  <div class="page-link"><a href="cartelera.html">Movies</a></div>
+  <div class="page-link"><a href="moviePoster.html">Movies</a></div>
     <div class="user-info">
         ${userInfo}
     </div>

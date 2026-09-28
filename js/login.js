@@ -36,6 +36,6 @@ formLogin.addEventListener("submit", (e) => {
 
   // Redirigir después de 1 segundo
   setTimeout(() => {
-    window.location.href = "cartelera.html";
+    window.location.href = "moviePoster.html";
   }, 1000);
 });

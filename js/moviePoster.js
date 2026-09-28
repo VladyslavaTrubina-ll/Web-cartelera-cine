@@ -1,7 +1,7 @@
 import { peliculas } from "./db.js";
 
 sessionStorage.removeItem("peliculaSeleccionada");
-//Esto verifica que alguien entra a cartelera sin login
+//Esto verifica que alguien entra a moviePoster.html sin login
 const usuario = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
 
 if (!usuario) {

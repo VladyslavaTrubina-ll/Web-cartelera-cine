@@ -32,7 +32,7 @@ let cantidad = parseInt(params.get("cantidad"));
 
 // Validar que los parámetros existan
 if (!sesionSeleccionadaId || !cantidad) {
-  window.location.href = "cartelera.html";
+  window.location.href = "moviePoster.html";
 }
 
 // Evento para manejar "Enter" en inputPago
@@ -63,7 +63,7 @@ if (!sesion) {
 // Validar que la sesión exista
 if (!sesion) {
   // alert("Error: Sesión no encontrada");
-  window.location.href = "cartelera.html";
+  window.location.href = "moviePoster.html";
 }
 
 const peliculaSeleccionada = peliculas.find(
