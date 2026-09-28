@@ -4,14 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New Customer Registration</title>
-    <!--este es el link con el css siempre debe ir dentro del head-->
     <link rel="stylesheet" href="css/estilos.css" />
     <script type="module" src="js/header.js"></script>
     <script type="module" src="js/futer.js"></script>
+    <!-- Добавляем скрипт 3D-карусели для этой страницы -->
+    <script type="module" src="js/3D-fotos-index.js"></script>
   </head>
   <body>
     <header id="header"></header>
-    <!--Este es el codigo del formulario para ingresar clientes nuevos-->
+
     <form id="formRegistroCliente" class="form-cliente">
       <h2>New customer registration</h2>
 
@@ -37,11 +38,75 @@
       <input type="password" id="password" required minlength="4" />
 
       <button type="submit">Register customer</button>
-
       <p id="mensaje"></p>
     </form>
-    <!---hasta aqui formulario de registro de cliente-->
-    <!--Esto es para activar los modulos, permite importar y exportar-->
+
+    <!-- Защитная обертка для карусели -->
+    <div id="carousel-wrapper">
+      <div class="title">DANCE</div>
+
+      <div class="loader" id="loader">
+        <div class="spinner"></div>
+        <div class="loader-text">Chargement des images...</div>
+      </div>
+
+      <div class="slider">
+        <div class="wrap">
+          <div class="viewport" id="viewport">
+            <div class="track" id="track">
+              <div class="card">
+                <div class="card-inner">
+                  <img
+                    class="loaded"
+                    src="img/interestellarhoriz.jpg"
+                    alt="Image 1"
+                  />
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-inner">
+                  <img class="loaded" src="img/lalalandHor.jpg" alt="Image 2" />
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-inner">
+                  <img class="loaded" src="img/avatarHor.jpg" alt="Image 3" />
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-inner">
+                  <img class="loaded" src="img/cocoHor.jpg" alt="Image 4" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Модальное окно -->
+      <div class="fullscreen-overlay" id="fullscreenOverlay">
+        <button class="close-button" id="closeButton">
+          <svg xmlns="http://w3.org" xml:space="preserve" viewBox="0 0 96 96">
+            <path
+              d="M96 14 82 0 48 34 14 0 0 14l34 34L0 82l14 14 34-34 34 34 14-14-34-34z"
+              fill="white"
+            />
+          </svg>
+        </button>
+        <button class="nav-button prev" id="prevButton">‹</button>
+        <button class="nav-button next" id="nextButton">›</button>
+        <div class="fullscreen-container" id="fullscreenContainer">
+          <div class="fullscreen-image-wrapper" id="fullscreenImageWrapper">
+            <img class="fullscreen-image" id="fullscreenImage" src="" alt="" />
+          </div>
+          <div class="fullscreen-info">
+            <div class="fullscreen-title" id="fullscreenTitle"></div>
+            <div class="fullscreen-comment" id="fullscreenComment"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script type="module" src="js/registration.js"></script>
   </body>
 </html>

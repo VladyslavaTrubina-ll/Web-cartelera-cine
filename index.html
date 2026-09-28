@@ -4,134 +4,165 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="css/login.css" />
     <link rel="stylesheet" href="css/estilos.css" />
     <script type="module" src="js/header.js"></script>
     <script type="module" src="js/futer.js"></script>
+    <!-- Вызов конструктора 3D карусели теперь в шапке, как в регистрации -->
     <script type="module" src="js/3D-fotos-index.js"></script>
   </head>
 
   <body>
+    <!-- Элемент header для работы header.js -->
     <header id="header"></header>
 
-    <div class="contenedor">
-      
-      <!-- Заголовок и загрузчик для новой 3D-карусели -->
-      <div class="title">DANCE</div>
-      <div class="copy">&Toc</div>
-      
-      <div class="loader" id="loader">
-          <div class="spinner"></div>
-          <div class="loader-text">Chargement des images...</div>
+    <!-- ФОРМА ЛОГИНА (без contenedor, идет напрямую как в регистрации) -->
+    <div class="login-box">
+      <h2>Sign in</h2>
+      <form id="formLogin" class="form-cliente">
+        <label>Email</label>
+        <input type="email" id="emailLogin" required />
+        <label>Password</label>
+        <input type="password" id="passwordLogin" required />
+        <button type="submit">Sign in</button>
+        <p id="mensajeLogin"></p>
+        <p>Don't have an account? <a href="registration.html">Create one</a></p>
+      </form>
+    </div>
+
+    <!-- Заголовок и загрузчик для 3D-карусели -->
+    <div id="carousel-wrapper">
+      <div id="loader" class="loader">
+        <div class="spinner"></div>
+        <p class="loader-text">Loading...</p>
       </div>
 
-      <!-- Контейнер Слайдера с НОВОЙ 3D КАРУСЕЛЬЮ -->
+      <!-- Контейнер Слайдера -->
       <div class="slider">
         <div class="wrap">
-            <div class="viewport" id="viewport">
-                <div class="track" id="track">
-                  
-                  <!-- КАРТОЧКА 1 -->
-                  <div class="card">
-                    <div class="card-inner">
-                      <img class="loaded" src="img/interestellarhoriz.jpg" alt="Image 1" />
-                    </div>
-                  </div>
-
-                  <!-- КАРТОЧКА 2 -->
-                  <div class="card">
-                    <div class="card-inner">
-                      <img class="loaded" src="img/lalalandHor.jpg" alt="Image 2" />
-                    </div>
-                  </div>
-
-                  <!-- КАРТОЧКА 3 -->
-                  <div class="card">
-                    <div class="card-inner">
-                      <img class="loaded" src="img/avatarHor.jpg" alt="Image 3" />
-                    </div>
-                  </div>
-
-                  <!-- КАРТОЧКА 4 -->
-                  <div class="card">
-                    <div class="card-inner">
-                      <img class="loaded" src="img/cocoHor.jpg" alt="Image 4" />
-                    </div>
-                  </div>
-
-                </div>
-            </div>
+          <div class="viewport" id="viewport">
+            <div class="track" id="track"></div>
+          </div>
         </div>
       </div>
 
-    </div>
-
-    <!-- Модальное окно полноэкранного просмотра (Overlay) -->
-    <div class="fullscreen-overlay" id="fullscreenOverlay">
+      <!-- Модальное окно полноэкранного просмотра (Overlay) -->
+      <div class="fullscreen-overlay" id="fullscreenOverlay">
         <button class="close-button" id="closeButton">
           <svg xmlns="http://w3.org" xml:space="preserve" viewBox="0 0 96 96">
-            <path d="M96 14 82 0 48 34 14 0 0 14l34 34L0 82l14 14 34-34 34 34 14-14-34-34z" fill="white"/>
+            <path
+              d="M96 14 82 0 48 34 14 0 0 14l34 34L0 82l14 14 34-34 34 34 14-14-34-34z"
+              fill="white"
+            />
           </svg>
         </button>
         <button class="nav-button prev" id="prevButton">‹</button>
         <button class="nav-button next" id="nextButton">›</button>
         <div class="fullscreen-container" id="fullscreenContainer">
-            <div class="fullscreen-image-wrapper" id="fullscreenImageWrapper">
-                <img class="fullscreen-image" id="fullscreenImage" src="" alt="" />
-            </div>
-            <div class="fullscreen-info">
-                <div class="fullscreen-title" id="fullscreenTitle"></div>
-                <div class="fullscreen-comment" id="fullscreenComment"></div>
-                <div class="fullscreen-credit" id="fullscreenCredit"></div>
-            </div>
+          <div class="fullscreen-image-wrapper" id="fullscreenImageWrapper">
+            <img class="fullscreen-image" id="fullscreenImage" src="" alt="" />
+          </div>
+          <div class="fullscreen-info">
+            <div class="fullscreen-title" id="fullscreenTitle"></div>
+            <div class="fullscreen-comment" id="fullscreenComment"></div>
+            <div class="fullscreen-credit" id="fullscreenCredit"></div>
+          </div>
         </div>
         <div class="image-counter" id="imageCounter"></div>
+      </div>
+      <!-- Конец fullscreen-overlay -->
     </div>
+    <!-- Конец carousel-wrapper -->
+
+    <!-- Скрипт логина под HTML элементами формы -->
+    <script type="module" src="js/login.js"></script>
 
     <!-- Скрипт кнопки Dark/Light Mode -->
     <script>
-      ! function() {
+      !(function () {
         let t = !1;
         const e = document.createElement("div");
-        e.style.cssText = "position:fixed;bottom:20px;left:20px;z-index:99;isolation:isolate;";
+        e.style.cssText =
+          "position:fixed;bottom:20px;left:20px;z-index:99;isolation:isolate;";
         const o = document.createElement("button");
-        o.style.cssText = "all:initial!important;display:flex!important;align-items:center!important;justify-content:center!important;width:36px!important;height:36px!important;border-radius:50%!important;background:#ecf0f1!important;border:2px solid #333!important;cursor:pointer!important;box-shadow:0 2px 10px rgba(0,0,0,0.2)!important;position:relative!important;";
+        o.style.cssText =
+          "all:initial!important;display:flex!important;align-items:center!important;justify-content:center!important;width:36px!important;height:36px!important;border-radius:50%!important;background:#ecf0f1!important;border:2px solid #333!important;cursor:pointer!important;box-shadow:0 2px 10px rgba(0,0,0,0.2)!important;position:relative!important;";
         const n = document.createElement("div");
-        n.style.cssText = "display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:100%!important;", o.appendChild(n), e.appendChild(o), document.body.appendChild(e);
+        ((n.style.cssText =
+          "display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:100%!important;"),
+          o.appendChild(n),
+          e.appendChild(o),
+          document.body.appendChild(e));
         const c = document.createElement("style");
 
         function i(t) {
-            t ? (n.innerHTML = '<svg xmlns="http://w3.org" id="dlmode" width="24" height="24" viewBox="0 0 17.316 21"><path d="M-29.442 163.484c1.315-.202 3.045-.949 4.384-1.892.487-.343.658-.652.562-1.02-.119-.454-.36-.526-1.754-.526-3.05 0-6.269-2.21-7.593-5.213-.848-1.923-.792-4.766.13-6.679.67-1.39 2.375-3.248 3.867-4.214.568-.368.607-.481.297-.855-.868-1.046-5.447-.209-7.832 1.432-5.884 4.049-5.872 13.21.024 17.245 2.268 1.553 5.063 2.16 7.915 1.722m-5.33-1.902c-2.781-1.036-5.094-3.946-5.58-7.023-.266-1.68.07-3.968.79-5.38 1.195-2.34 3.936-4.514 6.385-5.063l.75-.168-1.05 1.263c-1.404 1.689-1.812 2.562-2.176 4.65-.752 4.317 1.306 8.551 5.07 10.432.888.444 1.826.807 2.084.807.259 0 .54.113.625.251.137.222-.306.389-2.364.892-.854.209-3.059-.113-4.533-.661" style="fill:#000;stroke-width:.264583" transform="translate(41.786 -142.623)"/></svg>') : (n.innerHTML = '<svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 20.162 21"><path d="M44.297 98.248c-.182-.182-.141-3.018.047-3.314.127-.198.232-.213.468-.067.256.16.304.442.304 1.796 0 1.486-.026 1.61-.35 1.656-.191.027-.403-.005-.47-.071m-5.99-2.013c-.13-.336 1.76-2.84 2.142-2.84.535 0 .345.637-.563 1.884-.846 1.163-1.377 1.485-1.58.956m11.186-.937c-.904-1.22-1.108-1.903-.568-1.903.348 0 2.09 2.315 2.09 2.78 0 .665-.663.283-1.522-.877m-5.94-1.731c-1.793-.373-3.302-1.597-4.114-3.335-.404-.864-.478-1.242-.47-2.394.007-1.124.091-1.54.47-2.325 1.743-3.617 6.166-4.514 9.089-1.843 1.351 1.235 1.884 2.412 1.887 4.167.003 1.627-.478 2.844-1.608 4.069-1.21 1.313-3.48 2.03-5.255 1.66m3.135-1.225c.916-.43 1.94-1.423 2.36-2.289.455-.941.54-2.732.181-3.812-.634-1.91-2.435-3.165-4.54-3.165-1.952 0-3.523.984-4.44 2.78-.537 1.054-.492 3.081.095 4.258.417.837 1.366 1.78 2.258 2.243 1.097.57 2.851.564 4.086-.015m-11.92-1c-.447-.276.009-.636 1.476-1.164 1.248-.45 1.547-.505 1.733-.318.392.391.054.754-.952 1.022-.535.143-1.212.335-1.505.428s-.632.106-.752.032m17.958-.33c-1.142-.366-1.465-.541-1.506-.815-.083-.56.335-.566 1.865-.025 1.652.583 1.833.711 1.528 1.079-.261.314-.1.335-1.887-.239M36.055 85.56c-.935-.314-1.384-.553-1.424-.758-.1-.518.42-.519 1.972-.001 1.192.397 1.502.568 1.502.828 0 .474-.48.457-2.05-.069zm15.197.234c-.157-.407.01-.512 1.634-1.031 1.15-.367 1.603-.446 1.745-.304.378.377-.016.685-1.445 1.13-1.681.525-1.806.538-1.934.205M40.143 82.32c-.101-.069-.584-.698-1.073-1.398-.782-1.12-.858-1.302-.636-1.524.333-.334.553-.147 1.642 1.399.647.919.8 1.252.655 1.426-.214.258-.324.276-.588.097m8.542-.122c-.144-.374.091-.828 1.046-2.024.793-.993 1.158-1.15 1.246-.531.048.343-1.593 2.65-1.97 2.769-.118.037-.263-.06-.322-.214m-4.304-1.32c-.215-.215-.294-2.786-.102-3.287.134-.35.684-.35.819 0 .057.149.103.903.103 1.676 0 1.272-.153 1.816-.513 1.816-.056 0-.195-.093-.307-.205" style="fill:#000;stroke-width:.999998" transform="translate(-34.604 -77.329)"/></svg>')
+          t
+            ? (n.innerHTML =
+                '<svg xmlns="http://w3.org" id="dlmode" width="24" height="24" viewBox="0 0 17.316 21"><path d="M-29.442 163.484c1.315-.202 3.045-.949 4.384-1.892.487-.343.658-.652.562-1.02-.119-.454-.36-.526-1.754-.526-3.05 0-6.269-2.21-7.593-5.213-.848-1.923-.792-4.766.13-6.679.67-1.39 2.375-3.248 3.867-4.214.568-.368.607-.481.297-.855-.868-1.046-5.447-.209-7.832 1.432-5.884 4.049-5.872 13.21.024 17.245 2.268 1.553 5.063 2.16 7.915 1.722m-5.33-1.902c-2.781-1.036-5.094-3.946-5.58-7.023-.266-1.68.07-3.968.79-5.38 1.195-2.34 3.936-4.514 6.385-5.063l.75-.168-1.05 1.263c-1.404 1.689-1.812 2.562-2.176 4.65-.752 4.317 1.306 8.551 5.07 10.432.888.444 1.826.807 2.084.807.259 0 .54.113.625.251.137.222-.306.389-2.364.892-.854.209-3.059-.113-4.533-.661" style="fill:#000;stroke-width:.264583" transform="translate(41.786 -142.623)"/></svg>')
+            : (n.innerHTML =
+                '<svg xmlns="http://w3.org" width="24" height="24" viewBox="0 0 20.162 21"><path d="M44.297 98.248c-.182-.182-.141-3.018.047-3.314.127-.198.232-.213.468-.067.256.16.304.442.304 1.796 0 1.486-.026 1.61-.35 1.656-.191.027-.403-.005-.47-.071m-5.99-2.013c-.13-.336 1.76-2.84 2.142-2.84.535 0 .345.637-.563 1.884-.846 1.163-1.377 1.485-1.58.956m11.186-.937c-.904-1.22-1.108-1.903-.568-1.903.348 0 2.09 2.315 2.09 2.78 0 .665-.663.283-1.522-.877m-5.94-1.731c-1.793-.373-3.302-1.597-4.114-3.335-.404-.864-.478-1.242-.47-2.394.007-1.124.091-1.54.47-2.325 1.743-3.617 6.166-4.514 9.089-1.843 1.351 1.235 1.884 2.412 1.887 4.167.003 1.627-.478 2.844-1.608 4.069-1.21 1.313-3.48 2.03-5.255 1.66m3.135-1.225c.916-.43 1.94-1.423 2.36-2.289.455-.941.54-2.732.181-3.812-.634-1.91-2.435-3.165-4.54-3.165-1.952 0-3.523.984-4.44 2.78-.537 1.054-.492 3.081.095 4.258.417.837 1.366 1.78 2.258 2.243 1.097.57 2.851.564 4.086-.015m-11.92-1c-.447-.276.009-.636 1.476-1.164 1.248-.45 1.547-.505 1.733-.318.392.391.054.754-.952 1.022-.535.143-1.212.335-1.505.428s-.632.106-.752.032m17.958-.33c-1.142-.366-1.465-.541-1.506-.815-.083-.56.335-.566 1.865-.025 1.652.583 1.833.711 1.528 1.079-.261.314-.1.335-1.887-.239M36.055 85.56c-.935-.314-1.384-.553-1.424-.758-.1-.518.42-.519 1.972-.001 1.192.397 1.502.568 1.502.828 0 .474-.48.457-2.05-.069zm15.197.234c-.157-.407.01-.512 1.634-1.031 1.15-.367 1.603-.446 1.745-.304.378.377-.016.685-1.445 1.13-1.681.525-1.806.538-1.934.205M40.143 82.32c-.101-.069-.584-.698-1.073-1.398-.782-1.12-.858-1.302-.636-1.524.333-.334.553-.147 1.642 1.399.647.919.8 1.252.655 1.426-.214.258-.324.276-.588.097m8.542-.122c-.144-.374.091-.828 1.046-2.024.793-.993 1.158-1.15 1.246-.531.048.343-1.593 2.65-1.97 2.769-.118.037-.263-.06-.322-.214m-4.304-1.32c-.215-.215-.294-2.786-.102-3.287.134-.35.684-.35.819 0 .057.149.103.903.103 1.676 0 1.272-.153 1.816-.513 1.816-.056 0-.195-.093-.307-.205" style="fill:#000;stroke-width:.999998" transform="translate(-34.604 -77.329)"/></svg>');
         }
-        c.textContent = "\n        svg {\n            width: 24px !important;\n            height: 24px !important;\n            display: block !important;\n        }\n        svg path {\n            transition: fill 0.3s ease !important;\n        }\n    ", document.head.appendChild(c), o.onclick = () => {
-            t = !t, t ? (document.documentElement.style.filter = "invert(1)", document.querySelectorAll("img, video").forEach(t => t.style.filter = "invert(1)"), e.style.filter = "invert(1)", i(!0)) : (document.documentElement.style.filter = "", document.querySelectorAll("img, video").forEach(t => t.style.filter = ""), e.style.filter = "", i(!1)), localStorage.setItem("darkMode", t)
-        };console.log('Dark or Light Mode Toggle Button by &Toc on Codepen - https://codepen.io');
-        const r = function() {
-            const t = window.getComputedStyle(document.body).backgroundColor;
-            let e = t.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
-            if (e) {
-                const o = .299 * parseInt(e) + .587 * parseInt(e) + .114 * parseInt(e);
-                return o < 128
+        ((c.textContent =
+          "\n        svg {\n            width: 24px !important;\n            height: 24px !important;\n            display: block !important;\n        }\n        svg path {\n            transition: fill 0.3s ease !important;\n        }\n    "),
+          document.head.appendChild(c),
+          (o.onclick = () => {
+            ((t = !t),
+              t
+                ? ((document.documentElement.style.filter = "invert(1)"),
+                  document
+                    .querySelectorAll("img, video")
+                    .forEach((t) => (t.style.filter = "invert(1)")),
+                  (e.style.filter = "invert(1)"),
+                  i(!0))
+                : ((document.documentElement.style.filter = ""),
+                  document
+                    .querySelectorAll("img, video")
+                    .forEach((t) => (t.style.filter = "")),
+                  (e.style.filter = ""),
+                  i(!1)),
+              localStorage.setItem("darkMode", t));
+          }));
+        console.log(
+          "Dark or Light Mode Toggle Button by &Toc on Codepen - https://codepen.io",
+        );
+        const r = (function () {
+          const t = window.getComputedStyle(document.body).backgroundColor;
+          let e = t.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+          if (e) {
+            const o =
+              0.299 * parseInt(e) + 0.587 * parseInt(e) + 0.114 * parseInt(e);
+            return o < 128;
+          }
+          const o = window.getComputedStyle(document.body).color;
+          if (((e = o.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/)), e)) {
+            const t =
+              0.299 * parseInt(e) + 0.587 * parseInt(e) + 0.114 * parseInt(e);
+            return t > 128;
+          }
+          const n = document.querySelector("div, main, article, section");
+          if (n) {
+            const t = window.getComputedStyle(n).backgroundColor;
+            if (((e = t.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/)), e)) {
+              const o =
+                0.299 * parseInt(e) + 0.587 * parseInt(e) + 0.114 * parseInt(e);
+              return o < 128;
             }
-            const o = window.getComputedStyle(document.body).color;
-            if (e = o.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/), e) {
-                const t = .299 * parseInt(e) + .587 * parseInt(e) + .114 * parseInt(e);
-                return t > 128
-            }
-            const n = document.querySelector("div, main, article, section");
-            if (n) {
-                const t = window.getComputedStyle(n).backgroundColor;
-                if (e = t.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/), e) {
-                    const o = .299 * parseInt(e) + .587 * parseInt(e) + .114 * parseInt(e);
-                    return o < 128
-                }
-            }
-            if (document.body.classList.contains("dark") || document.body.classList.contains("dark-mode") || document.body.classList.contains("darkmode")) return !0;
-            const c = document.documentElement.getAttribute("data-theme");
-            return "dark" === c || "dark-mode" === c ? !0 : window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? !0 : !1
-        }();
-        t = r, localStorage.setItem("darkMode", t), i(t)
-      }();
+          }
+          if (
+            document.body.classList.contains("dark") ||
+            document.body.classList.contains("dark-mode") ||
+            document.body.classList.contains("darkmode")
+          )
+            return !0;
+          const c = document.documentElement.getAttribute("data-theme");
+          return "dark" === c || "dark-mode" === c
+            ? !0
+            : window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? !0
+              : !1;
+        })();
+        ((t = r), localStorage.setItem("darkMode", t), i(t));
+      })();
     </script>
   </body>
 </html>
